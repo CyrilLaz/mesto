@@ -99,6 +99,10 @@
   background-size: 22px;
 }
 
+.cards {
+margin-bottom: 67px;
+}
+
 .cards__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
@@ -106,25 +110,74 @@
   margin: 0;
   padding: 0;
   gap: 20px 17px;
+  min-width: 282px;
 }
 
 .cards__item {
   margin: 0;
   padding: 0;
-}
-
-.cards__picture-container {
-  position: relative;
-  padding-top: 100%;
-  display: inline-block;
+  background-color: #fff;
+  border-radius: 10px;
   overflow: hidden;
 }
 
+.cards__picture-container {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+}
+
 .cards__picture {
-  position: absolute;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.cards__capture{
+  display: flex;
+  width: calc(100%*241/282);
+  margin: 25px auto 31px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cards__title {
+  color: #000;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+}
+
+.cards__like-icon {
+  background-image:url(../../images/like-icon_disabled.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 19px;
+  width: 22px;
+  border: none;
+}
+
+.cards__like-icon:active {
+  background-image:url(../../images/like-icon_active.svg);
+}
+
+.footer {
+  max-width: 100%;
+  padding-bottom: 60px;
+}
+
+.footer__copyright {
+  margin: 0;
+  color: #545454;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
 }
