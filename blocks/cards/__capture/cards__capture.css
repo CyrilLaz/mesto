@@ -1,0 +1,7 @@
+.cards__capture {
+  display: flex;
+  width: calc(100%*241/282);
+  margin: 25px auto 31px;
+  justify-content: space-between;
+  align-items: center;
+}

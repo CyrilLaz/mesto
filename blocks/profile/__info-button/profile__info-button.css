@@ -1,0 +1,10 @@
+.profile__info-button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #fff;
+  background-image: url(../../../images/pen-button.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 42%;
+  margin-top: 32px;
+}
