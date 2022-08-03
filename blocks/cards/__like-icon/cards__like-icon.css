@@ -1,5 +1,5 @@
 .cards__like-icon {
-  background-image:url(../../images/like-icon_disabled.svg);
+  background-image:url(../../../images/like-icon_disabled.svg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 19px;
@@ -8,6 +8,6 @@
 }
 
 .cards__like-icon:active {
-  background-image:url(../../images/like-icon_active.svg);
+  background-image:url(../../../images/like-icon_active.svg);
 }
 

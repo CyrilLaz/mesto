@@ -17,6 +17,21 @@
       </div>
     </header>
     <main class="content">
+      <section class="popup">
+        <div class="popup__container">
+          <form class="form">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <fieldset class="form__input-container">
+              <input id="name" type="text" placeholder="Ваше имя" value="Жак-Ив Кусто" class="form__input" required>
+              <input id="subname" type="text" placeholder="Чем занимаетесь" value="Исследователь океана" class="form__input" required>
+            </fieldset>
+            <fieldset class="form__handlers">
+              <button type="submit" class="form__button-send">Сохранить</button>
+              <button type="reset" class="form__button-close"></button>
+            </fieldset>
+          </form>
+        </div>
+      </section>
       <section class="profile">
         <div class="profile__info-container">
           <img class="profile__avatar" src="./images/kusto.jpg">
@@ -58,7 +73,7 @@
                 <img class="cards__picture" alt="изображение зеркально чистого водоёма с деревьями" src="./images/water reflection.jpg">
               </div>
               <figcaption class="cards__capture">
-                <h2 class="cards__title">Карачаево-Ч...</h2>
+                <h2 class="cards__title">Карачаево-Черкеск</h2>
                 <button class="cards__like-icon button"></button>
               </figcaption>
             </figure>
