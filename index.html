@@ -1,123 +1,170 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="Кирилл Лазар">
-  <title>Mesto.Россия</title>
-  <link rel="stylesheet" href="./pages/index.css">
-</head>
-<body class="page">
-  <div class="page__container">
-    <header class="header">
-      <div class="header__container">
-        <div class="header__logo"></div>
-      </div>
-    </header>
-    <main class="content">
-      <section class="popup">
-        <div class="popup__container">
-          <form class="form">
-            <h2 class="form__title">Редактировать профиль</h2>
-            <fieldset class="form__input-container">
-              <input id="name" type="text" placeholder="Ваше имя" value="Жак-Ив Кусто" class="form__input" required>
-              <input id="subname" type="text" placeholder="Чем занимаетесь" value="Исследователь океана" class="form__input" required>
-            </fieldset>
-            <fieldset class="form__handlers">
-              <button type="submit" class="form__button-send">Сохранить</button>
-              <button type="reset" class="form__button-close"></button>
-            </fieldset>
-          </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="Кирилл Лазар" />
+    <title>Mesto.Россия</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+
+  <body class="page">
+    <div class="page__container">
+
+      <header class="header">
+        <div class="header__container">
+          <div class="header__logo"></div>
         </div>
-      </section>
-      <section class="profile">
-        <div class="profile__info-container">
-          <img class="profile__avatar" src="./images/kusto.jpg">
-          <div class="profile__info">
-            <h1 class="profile__name">Жан-ив Кусто</h1>
-            <p class="profile__subname">Исследователь океана</p>
+      </header>
+
+      <main class="content">
+        <section class="popup">
+          <div class="popup__container">
+            <form class="form">
+              <h2 class="form__title">Редактировать профиль</h2>
+              <fieldset class="form__input-container">
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Ваше имя"
+                  value="Жак-Ив Кусто"
+                  class="form__input"
+                  required
+                />
+                <input
+                  id="subname"
+                  type="text"
+                  placeholder="Чем занимаетесь"
+                  value="Исследователь океана"
+                  class="form__input"
+                  required
+                />
+              </fieldset>
+              <fieldset class="form__handlers">
+                <button type="submit" class="form__button-send">
+                  Сохранить
+                </button>
+                <button type="reset" class="form__button-close"></button>
+              </fieldset>
+            </form>
           </div>
-          <button class="profile__info-button button" type="button"></button>
-         </div>
-        <button class="profile__add-button button" type="button"></button>
-      </section>
-      <section class="cards">
-        <ul class="cards__list">
-          <li>
-            <figure class="cards__item">
-              <div class="cards__picture-container">
-                <img class="cards__picture" alt="изображение девушки на мосту" src="./images/girl-on-bridge-night.jpg">
-              </div>
-              <figcaption class="cards__capture">
-                <h2 class="cards__title">Карачаевск</h2>
-                <button class="cards__like-icon button"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="cards__item">
-              <div class="cards__picture-container">
-                <img class="cards__picture" alt="изображение восхода в горах" src="./images/sunshine-in-mountain.jpg">
-              </div>
-              <figcaption class="cards__capture">
-                <h2 class="cards__title">Гора Эльбрус</h2>
-                <button class="cards__like-icon button"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="cards__item">
-              <div class="cards__picture-container">
-                <img class="cards__picture" alt="изображение зеркально чистого водоёма с деревьями" src="./images/water reflection.jpg">
-              </div>
-              <figcaption class="cards__capture">
-                <h2 class="cards__title">Карачаево-Черкеск</h2>
-                <button class="cards__like-icon button"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="cards__item">
-              <div class="cards__picture-container">
-                <img class="cards__picture" alt="изображение леса в тумане" src="./images/woodin-the- mist.jpg">
-              </div>
-              <figcaption class="cards__capture">
-                <h2 class="cards__title">Домбай</h2>
-                <button class="cards__like-icon button"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="cards__item">
-              <div class="cards__picture-container">
-                <img class="cards__picture" alt="изображение ребенка на траве" src="./images/wood-chill.jpg">
-              </div>
-              <figcaption class="cards__capture">
-                <h2 class="cards__title">Карачуны</h2>
-                <button class="cards__like-icon button"></button>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure class="cards__item">
-              <div class="cards__picture-container">
-                <img class="cards__picture" alt="изображение каменистое побережье" src="./images/whitewater-rocks.jpg">
-              </div>
-              <figcaption class="cards__capture">
-                <h2 class="cards__title">Владивосток</h2>
-                <button class="cards__like-icon button"></button>
-              </figcaption>
-            </figure>
-          </li>
-        </ul>
-      </section>
-    </main>
-    <footer class="footer">
-      <p class="footer__copyright">&copy;2022 Mesto Russia</p>
-    </footer>
-  </div>
-  <!--<script src="script.js"></script>-->
-</body>
+        </section>
+
+        <section class="profile">
+          <div class="profile__info-container">
+            <img class="profile__avatar" src="./images/kusto.jpg" />
+            <div class="profile__info">
+              <h1 class="profile__name">Жан-ив Кусто</h1>
+              <p class="profile__subname">Исследователь океана</p>
+            </div>
+            <button class="profile__info-button button" type="button"></button>
+          </div>
+          <button class="profile__add-button button" type="button"></button>
+        </section>
+
+        <section class="cards">
+          <ul class="cards__list">
+            <li>
+              <figure class="cards__item">
+                <div class="cards__picture-container">
+                  <img
+                    class="cards__picture"
+                    alt="изображение девушки на мосту"
+                    src="./images/girl-on-bridge-night.jpg"
+                  />
+                </div>
+                <figcaption class="cards__capture">
+                  <h2 class="cards__title">Карачаевск</h2>
+                  <button class="cards__like-icon button"></button>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="cards__item">
+                <div class="cards__picture-container">
+                  <img
+                    class="cards__picture"
+                    alt="изображение восхода в горах"
+                    src="./images/sunshine-in-mountain.jpg"
+                  />
+                </div>
+                <figcaption class="cards__capture">
+                  <h2 class="cards__title">Гора Эльбрус</h2>
+                  <button class="cards__like-icon button"></button>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="cards__item">
+                <div class="cards__picture-container">
+                  <img
+                    class="cards__picture"
+                    alt="изображение зеркально чистого водоёма с деревьями"
+                    src="./images/water reflection.jpg"
+                  />
+                </div>
+                <figcaption class="cards__capture">
+                  <h2 class="cards__title">Карачаево-Черкеск</h2>
+                  <button class="cards__like-icon button"></button>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="cards__item">
+                <div class="cards__picture-container">
+                  <img
+                    class="cards__picture"
+                    alt="изображение леса в тумане"
+                    src="./images/woodin-the- mist.jpg"
+                  />
+                </div>
+                <figcaption class="cards__capture">
+                  <h2 class="cards__title">Домбай</h2>
+                  <button class="cards__like-icon button"></button>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="cards__item">
+                <div class="cards__picture-container">
+                  <img
+                    class="cards__picture"
+                    alt="изображение ребенка на траве"
+                    src="./images/wood-chill.jpg"
+                  />
+                </div>
+                <figcaption class="cards__capture">
+                  <h2 class="cards__title">Карачуны</h2>
+                  <button class="cards__like-icon button"></button>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="cards__item">
+                <div class="cards__picture-container">
+                  <img
+                    class="cards__picture"
+                    alt="изображение каменистое побережье"
+                    src="./images/whitewater-rocks.jpg"
+                  />
+                </div>
+                <figcaption class="cards__capture">
+                  <h2 class="cards__title">Владивосток</h2>
+                  <button class="cards__like-icon button"></button>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">&copy;2022 Mesto Russia</p>
+      </footer>
+      
+    </div>
+    <!--<script src="script.js"></script>-->
+  </body>
 </html>

@@ -8,3 +8,14 @@
   background-size: 42%;
   margin-top: 32px;
 }
+
+@media screen and (max-width: 600px) {
+  .profile__info-button {
+    margin: 0;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    bottom: 66px;
+    right: -10px;
+  }
+}

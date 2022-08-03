@@ -9,4 +9,17 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px;
+  transition: max-width .5s linear;
+}
+
+@media screen and (max-width: 950px) {
+  .profile__add-button {
+    max-width: 250px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__add-button {
+    max-width: 100%;
+  }
 }
