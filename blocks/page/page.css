@@ -22,7 +22,7 @@
   margin:45px 0 31px;
   background-image: url(../../images/logo.svg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   width: 142px;
   height: 33px;
 }
