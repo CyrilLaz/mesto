@@ -10,52 +10,98 @@
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
-  <header class="header">
-    <div class="header__container">
-      <div class="header__logo"></div>
-    </div>
-  </header>
-  <main class="content">
-    <section class="profile">
-      <img class="profile__avatar" src="./images/kusto.jpg">
-      <div class="profile__info">
-        <h1 class="profile__name">Жан-ив Кусто</h1>
-        <p class="profile__subname">Исследователь океана</p>
-        <input class="profile__info-button" type="button">
+  <div class="page__container">
+    <header class="header">
+      <div class="header__container">
+        <div class="header__logo"></div>
       </div>
-      <a class="profile__add-button">button</a>
-    </section>
-    <section class="cards">
-      <ul class="cards__list">
-        <li class="cards__item">
-          <img class="cards__picture" src="">
-          <h2 class="cards__title">Карачаевск</h2>
-          <div class="cards__like"></div>
-        </li>
-        <!--<li class="cards__item">
-          <img class="cards__picture" src="">
-          <h2 class="cards__title">Карачаевск</h2>
-        </li>
-        <li class="cards__item">
-          <img class="cards__picture" src="">
-          <h2 class="cards__title">Карачаевск</h2>
-        </li>
-        <li class="cards__item">
-          <img class="cards__picture" src="">
-          <h2 class="cards__title">Карачаевск</h2>
-        </li>
-        <li class="cards__item">
-          <img class="cards__picture" src="">
-          <h2 class="cards__title">Карачаевск</h2>
-        </li>
-        <li class="cards__item">
-          <img class="cards__picture" src="">
-          <h2 class="cards__title">Карачаевск</h2>
-        </li>-->
-      </ul>
-    </section>
-  </main>
-  <footer class="footer"></footer>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__info-container">
+          <img class="profile__avatar" src="./images/kusto.jpg">
+          <div class="profile__info">
+            <h1 class="profile__name">Жан-ив Кусто</h1>
+            <p class="profile__subname">Исследователь океана</p>
+          </div>
+          <button class="profile__info-button button" type="button"></button>
+         </div>
+        <button class="profile__add-button button" type="button"></button>
+      </section>
+      <section class="cards">
+        <ul class="cards__list">
+          <li>
+            <figure class="cards__item">
+              <div class="cards__picture-container">
+                <img class="cards__picture" alt="изображение девушки на мосту" src="./images/girl-on-bridge-night.jpg">
+              </div>
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>
+        <!--  <li>
+            <figure class="cards__item">
+              <img class="cards__picture" alt="" src="">
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="cards__item">
+              <img class="cards__picture" alt="" src="">
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="cards__item">
+              <img class="cards__picture" alt="" src="">
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="cards__item">
+              <img class="cards__picture" alt="" src="">
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="cards__item">
+              <img class="cards__picture" alt="" src="">
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="cards__item">
+              <img class="cards__picture" alt="" src="">
+              <figcaption class="cards__capture">
+                <h2 class="cards__title">Карачаевск</h2>
+                <button class="cards__like-icon button">сердце</button>
+              </figcaption>
+            </figure>
+          </li>-->
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy;2022 Mesto Russia</p>
+    </footer>
+  </div>
   <!--<script src="script.js"></script>-->
 </body>
 </html>
