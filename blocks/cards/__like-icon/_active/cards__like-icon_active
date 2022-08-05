@@ -1,5 +1,5 @@
-.cards__like-icon {
-  background-image:url(../../../images/like-icon_disabled.svg);
+.cards__like-icon_active {
+  background-image:url(../../../images/like-icon_active.svg);
   background-repeat: no-repeat;
   background-size: cover;
   height: 19px;
@@ -8,7 +8,6 @@
   transition: opacity .2s linear;
 }
 
-.cards__like-icon:hover {
+.cards__like-icon_active:hover {
   opacity: .5;
 }
-
