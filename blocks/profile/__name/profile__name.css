@@ -11,6 +11,7 @@
   .profile__name {
     font-size: 27px;
     line-height: 1;
+    text-align: center;
   }
 }
 
