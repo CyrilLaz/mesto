@@ -12,7 +12,11 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: right .5s linear;
+  transition: right .5s linear, opacity .2s linear;
+}
+
+.form__button-close:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 600px) {

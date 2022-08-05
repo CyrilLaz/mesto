@@ -9,7 +9,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 22px;
-  transition: max-width .5s linear;
+  transition: max-width .5s linear, opacity .2s linear;
+}
+
+.profile__add-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 950px) {

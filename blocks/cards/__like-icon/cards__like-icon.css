@@ -5,6 +5,11 @@
   height: 19px;
   width: 22px;
   border: none;
+  transition: opacity .2s linear;
+}
+
+.cards__like-icon:hover {
+  opacity: .5;
 }
 
 .cards__like-icon:active {
