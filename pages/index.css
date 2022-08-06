@@ -12,7 +12,6 @@
 @import url(../blocks/form/__handlers/form__handlers.css);
 @import url(../blocks/form/__button-send/form__button-send.css);
 @import url(../blocks/form/__button-close/form__button-close.css);
-@import url(../blocks/button/button.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/profile/profile.css);
@@ -21,8 +20,9 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__subname/profile__subname.css);
-@import url(../blocks/profile/__info-button/profile__info-button.css);
-@import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__button/profile__button.css);
+@import url(../blocks/profile/__button/_type/profile__button_type_add.css);
+@import url(../blocks/profile/__button/_type/profile__button_type_edit.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__list/cards__list.css);
 @import url(../blocks/cards/__item/cards__item.css);

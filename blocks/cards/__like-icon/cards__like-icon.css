@@ -1,4 +1,7 @@
 .cards__like-icon {
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
   background-image:url(../../../images/like-icon_disabled.svg);
   background-repeat: no-repeat;
   background-size: cover;
