@@ -1,7 +1,9 @@
 .cards__capture {
   display: flex;
-  width: calc(100%*241/282);
-  margin: 25px auto 26px;
+  width: 100%;
+  padding: 25px 20px 26px;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff;
+  box-sizing: border-box;
 }
