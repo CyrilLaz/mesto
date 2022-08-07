@@ -11,7 +11,7 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .profile__subname {
     max-width: 227px;
     font-size: 14px;
