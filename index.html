@@ -19,44 +19,12 @@
 
   <body class="page">
     <div class="page__container">
+
       <header class="header">
-        <div class="header__container">
-          <div class="header__logo"></div>
-        </div>
+        <div class="header__logo"></div>
       </header>
 
       <main class="content">
-        <section class="popup">
-          <div class="popup__container">
-            <form class="form">
-              <h2 class="form__title">Редактировать профиль</h2>
-              <fieldset class="form__input-container">
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Ваше имя"
-                  value="Жак-Ив Кусто"
-                  class="form__input form__input_type_name"
-                  required
-                />
-                <input
-                  id="subname"
-                  type="text"
-                  placeholder="Чем занимаетесь"
-                  value="Исследователь океана"
-                  class="form__input form__input_type_job"
-                  required
-                />
-              </fieldset>
-              <fieldset class="form__handlers">
-                <button type="submit" class="form__button-send">
-                  Сохранить
-                </button>
-                <button type="reset" class="form__button-close"></button>
-              </fieldset>
-            </form>
-          </div>
-        </section>
 
         <section class="profile">
           <div class="profile__info-container">
@@ -161,6 +129,35 @@
       <footer class="footer">
         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
+
+      <section class="popup">
+        <div class="popup__container">
+          <form class="form" name="popupForm">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <fieldset class="form__input-container">
+              <input
+                name="userName"
+                type="text"
+                placeholder="Ваше имя"
+                class="form__input form__input_type_name"
+                required
+              />
+              <input
+                name="userJob"
+                type="text"
+                placeholder="Чем занимаетесь"
+                class="form__input form__input_type_job"
+                required
+              />
+            </fieldset>
+            <button type="submit" class="form__button-send">
+              Сохранить
+            </button>
+            <button type="button" class="form__button-close"></button>
+          </form>
+        </div>
+      </section>
+
     </div>
     <script src="script/script.js"></script>
   </body>

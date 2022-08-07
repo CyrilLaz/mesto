@@ -9,9 +9,9 @@
   width: 22px;
   border: none;
   transition: opacity .2s linear;
+  cursor: pointer;
 }
 
 .cards__like-icon:hover {
   opacity: .5;
 }
-
