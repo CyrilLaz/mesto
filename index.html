@@ -24,7 +24,7 @@
         <div class="header__logo"></div>
       </header>
 
-      <main class="content">
+      <main class="content">\
 
         <section class="profile">
           <div class="profile__info-container">
@@ -75,8 +75,8 @@
             <button type="submit" class="form__button-send">
               Сохранить
             </button>
-            <button type="button" class="form__button-close"></button>
           </form>
+          <button type="button" class="popup__button-close"></button>
         </div>
       </section>
 
@@ -103,20 +103,22 @@
             <button type="submit" class="form__button-send">
               Создать
             </button>
-            <button type="button" class="form__button-close"></button>
           </form>
+          <button type="button" class="popup__button-close"></button>
         </div>
       </section>
 
       <template id="popup-picture">
         <section class="popup-picture popup">
-          <img
-            class="popup-picture__picture"
-            alt="изображение"
-            src=""
-          />
-          <h2 class="popup-picture__title"></h2>
-          <button class="popup__button-close"></button> <!--поправить в попапах разметку кнопки закрытия-->
+          <div class="popup-picture__container">
+            <img
+              class="popup-picture__picture"
+              alt="изображение"
+              src=""
+            />
+            <h2 class="popup-picture__title"></h2>
+            <button class="popup__button-close"></button>
+          </div>
         </section>
       </template>
 

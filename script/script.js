@@ -38,17 +38,18 @@ let name = content.querySelector('.profile__name');
 let job = content.querySelector('.profile__subname');
 let nameInput = formProfile.querySelector('.form__input_type_name');
 let jobInput = formProfile.querySelector('.form__input_type_job');
-let closeButtonProfile = popupProfile.querySelector('.form__button-close');
+let closeButtonProfile = popupProfile.querySelector('.popup__button-close');
 
 //переменные попап добавления фотографий
 let popupAddPicture = document.querySelector('.popup-addPicture');
 let formAddPicture = popupAddPicture.querySelector('.form');
 let titleInput = popupAddPicture.querySelector('.form__input_type_title');
 let urlInput = popupAddPicture.querySelector('.form__input_type_url');
-let closeButtonAddPicture = popupAddPicture.querySelector('.form__button-close');
+let closeButtonAddPicture = popupAddPicture.querySelector('.popup__button-close');
 
 //переменные попап фотографии
-let popupPicture = document.querySelector('.popup-picture');
+//let popupPicture = document.querySelector('.popup-picture');
+//let closeButtonPicture = popupPicture.querySelector('.popup__button-close')
 
 
 //функция открытия попап профиля
@@ -64,6 +65,15 @@ function closePopupProfile() {
   popupProfile.classList.remove('popup_opened');
 }
 
+//функция обработчик событий
+const eventProssesor = (elementItem) => {
+  elementItem.addEventListener('click', (evt)=>{
+  if (evt.target===elementItem.querySelector('.cards__like-icon')) liked(elementItem);
+    else if (evt.target===elementItem.querySelector('.cards__button-delete')) deletePicture(elementItem);
+    else openPicture(elementItem);
+  });
+}
+
 //функция создания карточки
 const createCard = (url, title) => {
   let cardTemplate = document.querySelector('#card-template').content;
@@ -75,16 +85,32 @@ const createCard = (url, title) => {
   cardItem.querySelector('.cards__title').textContent = title;
   cardsList.append(cardItem);
 
-  //вешаем слушатель для лайка
-  let likeIcon = cardItem.querySelector('.cards__like-icon');
-  likeIcon.addEventListener('click', function(){
-    likeIcon.classList.toggle('cards__like-icon_active')
-  });
-
-  deletePicture(cardItem);
+//обработчик событий
+  eventProssesor(cardItem);
 
 }
 
+
+
+//функция создания попап фотографии
+const openPicture =(elementItem) => {
+  let pictureTemplate = document.querySelector('#popup-picture').content;
+
+  let popupPicture = pictureTemplate.querySelector('.popup-picture').cloneNode(true);
+
+  popupPicture.querySelector('.popup-picture__picture').src = elementItem.querySelector('.cards__picture').src;
+  popupPicture.querySelector('.popup-picture__title').textContent = elementItem.querySelector('.cards__title').textContent;
+  content.append(popupPicture);
+
+  //слушатель на закрытие
+  popupPicture.querySelector('.popup__button-close').addEventListener('click',()=>popupPicture.remove())
+}
+
+//функция изменния лайка
+function liked(elementItem) {
+  let likeIcon = elementItem.querySelector('.cards__like-icon');
+  likeIcon.classList.toggle('cards__like-icon_active');
+}
 
 //добавление фотографий из массива
 initialCards.forEach(item=>createCard(item.link, item.name));
@@ -120,8 +146,7 @@ function addPicture(evt) {
 
 //функция удаления карточки
 function deletePicture(elementItem) {
-  const deleteButtom = elementItem.querySelector('.cards__button-delete');
-  deleteButtom.addEventListener('click',()=>{elementItem.remove();})
+  elementItem.remove();
 }
 
 
