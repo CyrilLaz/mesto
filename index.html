@@ -44,84 +44,6 @@
 
         <section class="cards">
           <ul class="cards__list">
-            <li>
-              <figure class="cards__item">
-                <img
-                    class="cards__picture"
-                    alt="изображение девушки на мосту"
-                    src="./images/girl-on-bridge-night.jpg"
-                />
-                <figcaption class="cards__capture">
-                  <h2 class="cards__title">Карачаевск</h2>
-                  <button class="cards__like-icon"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li>
-              <figure class="cards__item">
-                <img
-                  class="cards__picture"
-                  alt="изображение восхода в горах"
-                  src="./images/sunshine-in-mountain.jpg"
-                />
-                <figcaption class="cards__capture">
-                  <h2 class="cards__title">Гора Эльбрус</h2>
-                  <button class="cards__like-icon"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li>
-              <figure class="cards__item">
-                <img
-                  class="cards__picture"
-                  alt="изображение зеркально чистого водоёма с деревьями"
-                  src="./images/water-reflection.jpg"
-                />
-                <figcaption class="cards__capture">
-                  <h2 class="cards__title">Карачаево-Черкеск</h2>
-                  <button class="cards__like-icon"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li>
-              <figure class="cards__item">
-                <img
-                  class="cards__picture"
-                  alt="изображение леса в тумане"
-                  src="./images/woodin-the-mist.jpg"
-                />
-                <figcaption class="cards__capture">
-                  <h2 class="cards__title">Домбай</h2>
-                  <button class="cards__like-icon"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li>
-              <figure class="cards__item">
-                <img
-                  class="cards__picture"
-                  alt="изображение ребенка на траве"
-                  src="./images/wood-chill.jpg"
-                />
-                <figcaption class="cards__capture">
-                  <h2 class="cards__title">Карачуны</h2>
-                  <button class="cards__like-icon"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li>
-              <figure class="cards__item">
-                <img
-                  class="cards__picture"
-                  alt="изображение каменистое побережье"
-                  src="./images/whitewater-rocks.jpg"
-                />
-                <figcaption class="cards__capture">
-                  <h2 class="cards__title">Владивосток</h2>
-                  <button class="cards__like-icon"></button>
-                </figcaption>
-              </figure>
-            </li>
           </ul>
         </section>
       </main>
@@ -130,7 +52,7 @@
         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
 
-      <section class="popup">
+      <section class="popup popup-profile" >
         <div class="popup__container">
           <form class="form" name="popupForm">
             <h2 class="form__title">Редактировать профиль</h2>
@@ -158,6 +80,62 @@
         </div>
       </section>
 
+      <section class="popup popup-addPicture">
+        <div class="popup__container">
+          <form class="form" name="popupForm">
+            <h2 class="form__title">Новое место</h2>
+            <fieldset class="form__input-container">
+              <input
+                name="pictureName"
+                type="text"
+                placeholder="Название"
+                class="form__input form__input_type_title"
+                required
+              />
+              <input
+                name="pictureUrl"
+                type="text"
+                placeholder="Ссылкак на картинку"
+                class="form__input form__input_type_url"
+                required
+              />
+            </fieldset>
+            <button type="submit" class="form__button-send">
+              Создать
+            </button>
+            <button type="button" class="form__button-close"></button>
+          </form>
+        </div>
+      </section>
+
+      <template id="popup-picture">
+        <section class="popup-picture popup">
+          <img
+            class="popup-picture__picture"
+            alt="изображение"
+            src=""
+          />
+          <h2 class="popup-picture__title"></h2>
+          <button class="popup__button-close"></button> <!--поправить в попапах разметку кнопки закрытия-->
+        </section>
+      </template>
+
+      <template id="card-template">
+        <li>
+          <figure class="cards__item">
+            <img
+                class="cards__picture"
+                alt="изображение"
+                src=""
+            />
+            <button class="cards__button-openPopup"></button>
+            <figcaption class="cards__capture">
+              <h2 class="cards__title"></h2>
+              <button class="cards__like-icon"></button>
+            </figcaption>
+          </figure>
+        </li>
+      </template>
     </div>
     <script src="script/script.js"></script>
   </body>

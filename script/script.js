@@ -1,34 +1,125 @@
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
 let content = document.querySelector('.content');
-let popup = document.querySelector('.popup');
-let form = popup.querySelector('.form');
+
+//let popup = document.querySelectorAll('.popup'); попробовать можно реальзоать открытие и закрытие у массива попапов, но потом, сейчас не могу сообразить
+//переменные попап профиля
+let popupProfile = document.querySelector('.popup-profile');
+let formProfile = popupProfile.querySelector('.form');
 let editButton = content.querySelector('.profile__button_type_edit');
 let addButton = content.querySelector('.profile__button_type_add');
 let name = content.querySelector('.profile__name');
 let job = content.querySelector('.profile__subname');
-let nameInput = form.querySelector('.form__input_type_name');
-let jobInput = form.querySelector('.form__input_type_job');
-let closeButton = form.querySelector('.form__button-close');
+let nameInput = formProfile.querySelector('.form__input_type_name');
+let jobInput = formProfile.querySelector('.form__input_type_job');
+let closeButtonProfile = popupProfile.querySelector('.form__button-close');
 
-function openPopup() {
+//переменные попап добавления фотографий
+let popupAddPicture = document.querySelector('.popup-addPicture');
+let formAddPicture = popupAddPicture.querySelector('.form');
+let titleInput = popupAddPicture.querySelector('.form__input_type_title');
+let urlInput = popupAddPicture.querySelector('.form__input_type_url');
+let closeButtonAddPicture = popupAddPicture.querySelector('.form__button-close');
+
+//переменные попап фотографии
+let popupPicture = document.querySelector('.popup-picture');
+
+//функция открытия попап профиля
+function openPopupProfile() {
   jobInput.value = job.textContent;
   nameInput.value = name.textContent;
 
-  popup.classList.add('popup_opened');
+  popupProfile.classList.add('popup_opened');
 }
 
-function closePopup() {
-  popup.classList.remove('popup_opened');
+// функция закрытия попап профиля
+function closePopupProfile() {
+  popupProfile.classList.remove('popup_opened');
 }
 
+// функция внесения данных попап профиля
 function editInfo(evt) {
   evt.preventDefault();
 
   job.textContent = jobInput.value;
   name.textContent = nameInput.value;
 
-  closePopup();
+  closePopupProfile();
 }
 
-editButton.addEventListener('click', openPopup);
-closeButton.addEventListener('click', closePopup);
-form.addEventListener('submit', editInfo);
+// функция открытия папап добавления фотографии
+function openPopupAddPicture() {
+
+  popupAddPicture.classList.add('popup_opened');
+}
+
+// функция закрытия папап добавления фотографии
+function closePopupAddPicture() {
+  popupAddPicture.classList.remove('popup_opened');
+}
+
+// функция добавления фотографии
+function addPicture(evt) {
+  evt.preventDefault();
+
+  const cardTemplate = document.querySelector('#card-template').content;
+  const cardsList = document.querySelector('.cards__list');
+
+  const cardItem = cardTemplate.querySelector('li').cloneNode(true);
+
+  cardItem.querySelector('.cards__picture').src = urlInput.value;
+  cardItem.querySelector('.cards__title').textContent = titleInput.value;
+
+  cardsList.append(cardItem);
+  // если сюда повесить слушателя
+  closePopupAddPicture();
+}
+
+// слушатели на попап-профиле
+
+editButton.addEventListener('click', openPopupProfile);
+closeButtonProfile.addEventListener('click', closePopupProfile);
+formProfile.addEventListener('submit', editInfo);
+
+// слушатели на попап-добавлении фотографий
+addButton.addEventListener('click', openPopupAddPicture);
+closeButtonAddPicture.addEventListener('click', closePopupAddPicture);
+formAddPicture.addEventListener('submit', addPicture);
+
+const button = document.querySelector('.cards__item');
+console.log(button);
+
+button.addEventListener('click', function (event) { // event доступен как параметр
+    console.log(event.target); // его можно использовать в теле обработчика
+});
+
+
+//1.сделать добавление карточек из массива инитиал
+//2. сделать добавление карточек пользоавтелем
+//3.
