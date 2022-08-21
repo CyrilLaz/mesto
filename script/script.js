@@ -47,22 +47,12 @@ let titleInput = popupAddPicture.querySelector('.form__input_type_title');
 let urlInput = popupAddPicture.querySelector('.form__input_type_url');
 let closeButtonAddPicture = popupAddPicture.querySelector('.popup__button-close');
 
-//переменные попап фотографии
-//let popupPicture = document.querySelector('.popup-picture');
-//let closeButtonPicture = popupPicture.querySelector('.popup__button-close')
-
-
 //функция открытия попап профиля
 function openPopupProfile() {
   jobInput.value = job.textContent;
   nameInput.value = name.textContent;
 
   popupProfile.classList.add('popup_opened');
-}
-
-// функция закрытия попап профиля
-function closePopupProfile() {
-  popupProfile.classList.remove('popup_opened');
 }
 
 //функция обработчик событий
@@ -85,16 +75,12 @@ const createCard = (url, title) => {
   cardItem.querySelector('.cards__title').textContent = title;
   cardsList.append(cardItem);
 
-//обработчик событий
-  eventProssesor(cardItem);
-
+  eventProssesor(cardItem);//обработчик событий
 }
-
-
 
 //функция создания попап фотографии
 const openPicture =(elementItem) => {
-  let pictureTemplate = document.querySelector('#popup-picture').content;
+  let pictureTemplate = document.querySelector('#popup-template').content;
 
   let popupPicture = pictureTemplate.querySelector('.popup-picture').cloneNode(true);
 
@@ -122,17 +108,12 @@ function editInfo(evt) {
   job.textContent = jobInput.value;
   name.textContent = nameInput.value;
 
-  closePopupProfile();
+  closePopup(evt);
 }
 
 // функция открытия папап добавления фотографии
 function openPopupAddPicture() {
   popupAddPicture.classList.add('popup_opened');
-}
-
-// функция закрытия папап добавления фотографии
-function closePopupAddPicture() {
-  popupAddPicture.classList.remove('popup_opened');
 }
 
 // функция добавления фотографии из попапа
@@ -141,7 +122,10 @@ function addPicture(evt) {
 
   createCard(urlInput.value, titleInput.value);
 
-  closePopupAddPicture();
+  closePopup(evt);
+  
+  urlInput.value='';
+  titleInput.value='';
 }
 
 //функция удаления карточки
@@ -149,26 +133,17 @@ function deletePicture(elementItem) {
   elementItem.remove();
 }
 
+function closePopup(evt) {
+  evt.target.closest('.popup').classList.remove('popup_opened');
+}
 
 // слушатели на попап-профиле
 
 editButton.addEventListener('click', openPopupProfile);
-closeButtonProfile.addEventListener('click', closePopupProfile);
+closeButtonProfile.addEventListener('click', closePopup);
 formProfile.addEventListener('submit', editInfo);
 
 // слушатели на попап-добавлении фотографий
 addButton.addEventListener('click', openPopupAddPicture);
-closeButtonAddPicture.addEventListener('click', closePopupAddPicture);
+closeButtonAddPicture.addEventListener('click', closePopup);
 formAddPicture.addEventListener('submit', addPicture);
-
-/*const button = document.querySelector('.cards__item');
-console.log(button);
-
-button.addEventListener('click', function (event) { // event доступен как параметр
-    console.log(event.target); // его можно использовать в теле обработчика
-});*/
-
-
-//1.сделать добавление карточек из массива инитиал
-//2. сделать добавление карточек пользоавтелем
-//3.
