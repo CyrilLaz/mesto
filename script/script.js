@@ -63,6 +63,7 @@ function openPopupProfile() {
 function closePopupProfile() {
   popupProfile.classList.remove('popup_opened');
 }
+
 //функция создания карточки
 const createCard = (url, title) => {
   let cardTemplate = document.querySelector('#card-template').content;
@@ -73,7 +74,14 @@ const createCard = (url, title) => {
   cardItem.querySelector('.cards__picture').src = url;
   cardItem.querySelector('.cards__title').textContent = title;
   cardsList.append(cardItem);
+
+  //вешаем слушатель для лайка
+  let likeIcon = cardItem.querySelector('.cards__like-icon');
+  likeIcon.addEventListener('click', function(){
+    likeIcon.classList.toggle('cards__like-icon_active')
+  });
 }
+
 
 //добавление фотографий из массива
 initialCards.forEach(item=>createCard(item.link, item.name));
@@ -90,7 +98,6 @@ function editInfo(evt) {
 
 // функция открытия папап добавления фотографии
 function openPopupAddPicture() {
-
   popupAddPicture.classList.add('popup_opened');
 }
 
@@ -105,7 +112,6 @@ function addPicture(evt) {
 
   createCard(urlInput.value, titleInput.value);
 
-  // если сюда повесить слушателя
   closePopupAddPicture();
 }
 
