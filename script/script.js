@@ -50,6 +50,7 @@ let closeButtonAddPicture = popupAddPicture.querySelector('.form__button-close')
 //переменные попап фотографии
 let popupPicture = document.querySelector('.popup-picture');
 
+
 //функция открытия попап профиля
 function openPopupProfile() {
   jobInput.value = job.textContent;
@@ -62,6 +63,20 @@ function openPopupProfile() {
 function closePopupProfile() {
   popupProfile.classList.remove('popup_opened');
 }
+//функция создания карточки
+const createCard = (url, title) => {
+  let cardTemplate = document.querySelector('#card-template').content;
+  let cardsList = document.querySelector('.cards__list');
+
+  let cardItem = cardTemplate.querySelector('li').cloneNode(true);
+
+  cardItem.querySelector('.cards__picture').src = url;
+  cardItem.querySelector('.cards__title').textContent = title;
+  cardsList.append(cardItem);
+}
+
+//добавление фотографий из массива
+initialCards.forEach(item=>createCard(item.link, item.name));
 
 // функция внесения данных попап профиля
 function editInfo(evt) {
@@ -84,22 +99,16 @@ function closePopupAddPicture() {
   popupAddPicture.classList.remove('popup_opened');
 }
 
-// функция добавления фотографии
+// функция добавления фотографии из попапа
 function addPicture(evt) {
   evt.preventDefault();
 
-  const cardTemplate = document.querySelector('#card-template').content;
-  const cardsList = document.querySelector('.cards__list');
+  createCard(urlInput.value, titleInput.value);
 
-  const cardItem = cardTemplate.querySelector('li').cloneNode(true);
-
-  cardItem.querySelector('.cards__picture').src = urlInput.value;
-  cardItem.querySelector('.cards__title').textContent = titleInput.value;
-
-  cardsList.append(cardItem);
   // если сюда повесить слушателя
   closePopupAddPicture();
 }
+
 
 // слушатели на попап-профиле
 
@@ -112,12 +121,12 @@ addButton.addEventListener('click', openPopupAddPicture);
 closeButtonAddPicture.addEventListener('click', closePopupAddPicture);
 formAddPicture.addEventListener('submit', addPicture);
 
-const button = document.querySelector('.cards__item');
+/*const button = document.querySelector('.cards__item');
 console.log(button);
 
 button.addEventListener('click', function (event) { // event доступен как параметр
     console.log(event.target); // его можно использовать в теле обработчика
-});
+});*/
 
 
 //1.сделать добавление карточек из массива инитиал
