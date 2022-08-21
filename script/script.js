@@ -80,6 +80,9 @@ const createCard = (url, title) => {
   likeIcon.addEventListener('click', function(){
     likeIcon.classList.toggle('cards__like-icon_active')
   });
+
+  deletePicture(cardItem);
+
 }
 
 
@@ -113,6 +116,12 @@ function addPicture(evt) {
   createCard(urlInput.value, titleInput.value);
 
   closePopupAddPicture();
+}
+
+//функция удаления карточки
+function deletePicture(elementItem) {
+  const deleteButtom = elementItem.querySelector('.cards__button-delete');
+  deleteButtom.addEventListener('click',()=>{elementItem.remove();})
 }
 
 
