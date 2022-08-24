@@ -156,6 +156,6 @@ formAddPicture.addEventListener("submit", addPicture);
 
 //слушатель на закрытие попап фотографии
 closeButtonPicture.addEventListener("click", () => {
-  picturePopup.querySelector(".popup-picture__picture").src = "";
+  picturePopup.querySelector(".popup-picture__picture").src = "#";
   closePopup(picturePopup);
 });
