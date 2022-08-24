@@ -85,6 +85,27 @@ const createCard = (url, title) => {
   return cardItem;
 };
 
+const openPicture = (elementItem) => {
+  picturePopup.querySelector(".popup-picture__picture").src =
+    elementItem.querySelector(".cards__picture").src;
+  picturePopup.querySelector(".popup-picture__title").textContent =
+    elementItem.querySelector(".cards__title").textContent;
+
+  openPopup(picturePopup);
+};
+
+//функция изменния лайка
+function liked(elementItem) {
+  let likeIcon = elementItem.querySelector(".cards__like-icon");
+  likeIcon.classList.toggle("cards__like-icon_active");
+}
+
+//функция удаления карточки
+function deleteCard(elementItem) {
+  elementItem.remove();
+}
+
+//сборник слушателей на карточке
 const eventListenersCard = (element) => {
   element
     .querySelector(".cards__like-icon")
@@ -102,21 +123,6 @@ const renderCard = (url, title) => {
   cardsList.prepend(createCard(url, title));
 };
 
-const openPicture = (elementItem) => {
-  picturePopup.querySelector(".popup-picture__picture").src =
-    elementItem.querySelector(".cards__picture").src;
-  picturePopup.querySelector(".popup-picture__title").textContent =
-    elementItem.querySelector(".cards__title").textContent;
-
-  openPopup(picturePopup);
-};
-
-//функция изменния лайка
-function liked(elementItem) {
-  let likeIcon = elementItem.querySelector(".cards__like-icon");
-  likeIcon.classList.toggle("cards__like-icon_active");
-}
-
 //добавление фотографий из массива
 initialCards.forEach((item) => renderCard(item.link, item.name));
 
@@ -130,11 +136,6 @@ function addPicture(evt) {
   titleInput.value = "";
 
   closePopup(cardPopup);
-}
-
-//функция удаления карточки
-function deleteCard(elementItem) {
-  elementItem.remove();
 }
 
 // слушатели на попап-профиле
