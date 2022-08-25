@@ -6,3 +6,7 @@
   aspect-ratio: 1 / 1;
   cursor: pointer;
 }
+
+.cards__picture[alt] {
+  color: #fff;
+}
