@@ -1,0 +1,11 @@
+.form__input-error {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  /*opacity: 0;*/
+  margin: 0 0 15px;
+  padding: 0;
+  height: 15px; /*посмотреть как будет рабоатть с большой строкой ошибки*/
+}

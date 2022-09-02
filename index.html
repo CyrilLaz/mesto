@@ -64,6 +64,7 @@
                 class="form__input form__input_type_name"
                 required
               />
+              <span class="form__input-error">ошибка</span>
               <input
                 name="userJob"
                 type="text"
@@ -71,8 +72,9 @@
                 class="form__input form__input_type_job"
                 required
               />
+              <span class="form__input-error">ошибка</span>
             </fieldset>
-            <button type="submit" class="form__button-send">
+            <button type="submit" class="form__button">
               Сохранить
             </button>
           </form>
@@ -92,6 +94,7 @@
                 class="form__input form__input_type_title"
                 required
               />
+              <span class="form__input-error">ошибка</span>
               <input
                 name="pictureUrl"
                 type="url"
@@ -99,8 +102,9 @@
                 class="form__input form__input_type_url"
                 required
               />
+              <span class="form__input-error">ошибка</span>
             </fieldset>
-            <button type="submit" class="form__button-send">
+            <button type="submit" class="form__button">
               Создать
             </button>
           </form>
@@ -134,7 +138,10 @@
           </figure>
         </li>
       </template>
+
     </div>
-    <script src="script/script.js"></script>
+    <script src="script/initial-cards.js"></script>
+    <script src="script/index.js"></script>
+    <script src="script/validation.js"></script>
   </body>
 </html>
