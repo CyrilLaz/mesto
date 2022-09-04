@@ -54,7 +54,7 @@
 
       <section class="popup popup-profile" >
         <div class="popup__container">
-          <form class="form" name="popupForm">
+          <form class="form" name="popupForm" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
             <fieldset class="form__input-container">
               <input
@@ -62,17 +62,19 @@
                 type="text"
                 placeholder="Ваше имя"
                 class="form__input form__input_type_name"
+                minlength="3"
                 required
               />
-              <span class="form__input-error">ошибка</span>
+              <span class="form__input-error userName-error">ошибка</span>
               <input
                 name="userJob"
                 type="text"
                 placeholder="Чем занимаетесь"
                 class="form__input form__input_type_job"
+                minlength="5"
                 required
               />
-              <span class="form__input-error">ошибка</span>
+              <span class="form__input-error userJob-error">ошибка</span>
             </fieldset>
             <button type="submit" class="form__button">
               Сохранить
@@ -84,7 +86,7 @@
 
       <section class="popup popup-addPicture">
         <div class="popup__container">
-          <form class="form" name="popupForm">
+          <form class="form" name="popupForm" novalidate>
             <h2 class="form__title">Новое место</h2>
             <fieldset class="form__input-container">
               <input
@@ -92,9 +94,10 @@
                 type="text"
                 placeholder="Название"
                 class="form__input form__input_type_title"
+                minlength="3"
                 required
               />
-              <span class="form__input-error">ошибка</span>
+              <span class="form__input-error pictureName-error">ошибка</span>
               <input
                 name="pictureUrl"
                 type="url"
@@ -102,7 +105,7 @@
                 class="form__input form__input_type_url"
                 required
               />
-              <span class="form__input-error">ошибка</span>
+              <span class="form__input-error pictureUrl-error">ошибка</span>
             </fieldset>
             <button type="submit" class="form__button">
               Создать

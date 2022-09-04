@@ -2,6 +2,7 @@ const content = document.querySelector('.content');
 const profilePopup = document.querySelector('.popup-profile');
 const cardPopup = document.querySelector('.popup-addPicture');
 const picturePopup = document.querySelector('.popup-picture');
+const popup = document.querySelectorAll('.popup');
 
 //переменные попап профиля
 const formProfile = profilePopup.querySelector('.form');
@@ -12,6 +13,7 @@ const job = content.querySelector('.profile__subname');
 const nameInput = formProfile.querySelector('.form__input_type_name');
 const jobInput = formProfile.querySelector('.form__input_type_job');
 const closeButtonProfile = profilePopup.querySelector('.popup__button-close');
+const submitButtonProfile = profilePopup.querySelector('.form__button');
 
 //переменные попап добавления фотографий
 const formAddPicture = cardPopup.querySelector('.form');
@@ -28,9 +30,29 @@ const closeButtonPicture = picturePopup.querySelector('.close-picture');
 const imgPicturePopup = picturePopup.querySelector('.popup-picture__picture');
 const titlePicturePopup = picturePopup.querySelector('.popup-picture__title');
 
+//функция на закрытие попап кликом оверлей
+function setOverlayClose(popupElement) {
+  popupElement.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) closePopup(popupElement);
+  }, {once: true});
+}
+
+//функция для закрытия попап клавишей esc
+function setEscapeButtonClose(popupElement) {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      console.log(`нажали ${evt.key}`);
+      closePopup(popupElement);
+    } else return setEscapeButtonClose(popupElement)
+  }, {once: true});
+}
+//
 //функция открытия попап
 function openPopup(element) {
   element.classList.add('popup_opened');
+
+  setOverlayClose(element);
+  setEscapeButtonClose(element);
 }
 
 //функция закрытия попап
@@ -53,7 +75,9 @@ const createCard = (url, title) => {
   const cardItem = cardTemplate.querySelector('li').cloneNode(true);
 
   cardItem.querySelector('.cards__picture').src = url;
-  cardItem.querySelector('.cards__picture').alt = `Картинка с названием "${title}"`;
+  cardItem.querySelector(
+    '.cards__picture'
+  ).alt = `Картинка с названием "${title}"`;
 
   cardItem.querySelector('.cards__title').textContent = title;
 
@@ -63,12 +87,9 @@ const createCard = (url, title) => {
 };
 
 const openPicture = (elementItem) => {
-
   imgPicturePopup.src = '';
-  imgPicturePopup.src =
-    elementItem.querySelector('.cards__picture').src;
-  imgPicturePopup.alt =
-    elementItem.querySelector('.cards__picture').alt;
+  imgPicturePopup.src = elementItem.querySelector('.cards__picture').src;
+  imgPicturePopup.alt = elementItem.querySelector('.cards__picture').alt;
 
   titlePicturePopup.textContent =
     elementItem.querySelector('.cards__title').textContent;
@@ -124,6 +145,10 @@ editButton.addEventListener('click', () => {
   jobInput.value = job.textContent;
   nameInput.value = name.textContent;
 
+  [jobInput, nameInput].forEach((element) =>//вызываю перепроверку наличия ошибки в полях ввода при открытии попапа
+    checkInputValidity(profilePopup, element)
+  );
+
   openPopup(profilePopup);
 });
 
@@ -131,7 +156,10 @@ closeButtonProfile.addEventListener('click', () => closePopup(profilePopup));
 formProfile.addEventListener('submit', editInfo);
 
 // слушатели на попап-добавлении фотографий
-addButton.addEventListener('click', () => openPopup(cardPopup));
+addButton.addEventListener('click', () => {
+  openPopup(cardPopup);
+});
+
 closeButtonAddPicture.addEventListener('click', () => closePopup(cardPopup));
 formAddPicture.addEventListener('submit', addPicture);
 
