@@ -70,9 +70,7 @@ function toggleButtonState(inputList, buttonElement) {
 
 //проверка на наличие ошибок среди полей
 function hasInvalid(inputList) {
-  return inputList.some((inputElement) => {
-    return inputElement.validity.valid === false;
-  });
+  return inputList.some((inputElement) => inputElement.validity.valid === false);
 }
 
 //функция  для  перепроверки формы после удачного сабмита, иначе
