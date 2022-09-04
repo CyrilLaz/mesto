@@ -18,7 +18,8 @@ function enableValidation(config) {
     const buttonElement = formElement.querySelector(
       config.submitButtonSelector
     );
-    
+
+    resetValidation(formElement, inputList, buttonElement)
     toggleButtonState(inputList, buttonElement);
 
     inputList.forEach((inputElement) => {
@@ -28,7 +29,7 @@ function enableValidation(config) {
 }
 
 //установка слуашетлей на поля ввода
-function setEventListeners(formElement, inputElement, inputList,buttonElement) {
+function setEventListeners(formElement, inputElement, inputList, buttonElement) {
 
   checkInputValidity(formElement, inputElement);
 
@@ -73,5 +74,10 @@ function hasInvalid(inputList) {
     return inputElement.validity.valid === false;
   });
 }
+
+//функция  для  перепроверки формы после удачного сабмита, иначе
+function resetValidation(formElement, inputList, buttonElement) {
+  formElement.addEventListener('submit',() => toggleButtonState(inputList, buttonElement));
+} //можно создавать пустые карточки
 
 enableValidation(validationConfig);
