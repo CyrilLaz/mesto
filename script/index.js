@@ -33,7 +33,7 @@ const titlePicturePopup = picturePopup.querySelector('.popup-picture__title');
 function setOverlayClose(popupElement) {
   popupElement.addEventListener('click', (evt) => {
     if (evt.target === evt.currentTarget) closePopup(popupElement);
-  }, {once: true});
+  });
 }
 
 //функция для закрытия попап клавишей esc

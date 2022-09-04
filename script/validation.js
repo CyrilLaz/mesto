@@ -18,6 +18,8 @@ function enableValidation(config) {
     const buttonElement = formElement.querySelector(
       config.submitButtonSelector
     );
+    
+    toggleButtonState(inputList, buttonElement);
 
     inputList.forEach((inputElement) => {
       setEventListeners(formElement, inputElement, inputList, buttonElement);
@@ -26,13 +28,9 @@ function enableValidation(config) {
 }
 
 //установка слуашетлей на поля ввода
-function setEventListeners(
-  formElement,
-  inputElement,
-  inputList,
-  buttonElement
-) {
-  checkInputValidity(formElement, inputElement); //дает возможность после повторного отрытия попапа перепроверить наличие ошибки
+function setEventListeners(formElement, inputElement, inputList,buttonElement) {
+
+  checkInputValidity(formElement, inputElement);
 
   inputElement.addEventListener('input', () => {
     checkInputValidity(formElement, inputElement);
