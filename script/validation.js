@@ -25,6 +25,7 @@ function enableValidation(config) {
   });
 }
 
+//установка слуашетлей на поля ввода
 function setEventListeners(
   formElement,
   inputElement,
@@ -39,12 +40,14 @@ function setEventListeners(
   });
 }
 
+//првоерка на валидность поля
 function checkInputValidity(formElement, inputElement) {
   !inputElement.validity.valid
     ? showInputError(formElement, inputElement, inputElement.validationMessage)
     : hideInputError(formElement, inputElement);
 }
 
+//функция показа ошибки
 function showInputError(formElement, inputElement, messedge) {
   const inputError = formElement.querySelector(`.${inputElement.name}-error`);
   inputError.classList.add(validationConfig.errorClass);
@@ -52,18 +55,21 @@ function showInputError(formElement, inputElement, messedge) {
   inputError.textContent = messedge;
 }
 
+//функция скрытия ошибки
 function hideInputError(formElement, inputElement) {
   const inputError = formElement.querySelector(`.${inputElement.name}-error`);
   inputError.classList.remove(validationConfig.errorClass);
   inputElement.classList.remove(validationConfig.inputErrorClass);
 }
 
+//функция переключения состояния кнопки submit
 function toggleButtonState(inputList, buttonElement) {
   hasInvalid(inputList)
     ? buttonElement.classList.add(validationConfig.inactiveButtonClass)
     : buttonElement.classList.remove(validationConfig.inactiveButtonClass);
 }
 
+//проверка на наличие ошибок среди полей
 function hasInvalid(inputList) {
   return inputList.some((inputElement) => {
     return inputElement.validity.valid === false;

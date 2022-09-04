@@ -2,7 +2,6 @@ const content = document.querySelector('.content');
 const profilePopup = document.querySelector('.popup-profile');
 const cardPopup = document.querySelector('.popup-addPicture');
 const picturePopup = document.querySelector('.popup-picture');
-const popup = document.querySelectorAll('.popup');
 
 //переменные попап профиля
 const formProfile = profilePopup.querySelector('.form');
@@ -46,7 +45,7 @@ function setEscapeButtonClose(popupElement) {
     } else return setEscapeButtonClose(popupElement)
   }, {once: true});
 }
-//
+
 //функция открытия попап
 function openPopup(element) {
   element.classList.add('popup_opened');
