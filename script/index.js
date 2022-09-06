@@ -1,4 +1,5 @@
 const content = document.querySelector('.content');
+const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup-profile');
 const cardPopup = document.querySelector('.popup-addPicture');
 const picturePopup = document.querySelector('.popup-picture');
@@ -29,6 +30,7 @@ const closeButtonPicture = picturePopup.querySelector('.close-picture');
 const imgPicturePopup = picturePopup.querySelector('.popup-picture__picture');
 const titlePicturePopup = picturePopup.querySelector('.popup-picture__title');
 
+
 //функция на закрытие попап кликом оверлей
 function setOverlayClose(popupElement) {
   popupElement.addEventListener('click', (evt) => {
@@ -36,27 +38,35 @@ function setOverlayClose(popupElement) {
   });
 }
 
+//раскидываем слушателя на попапы
+popups.forEach((popupElement)=>{
+  setOverlayClose(popupElement);
+});
+
 //функция для закрытия попап клавишей esc
-function setEscapeButtonClose(popupElement) {
-  document.addEventListener('keydown', (evt) => {
+function closeByEsc(evt) {
     if (evt.key === 'Escape') {
       console.log(`нажали ${evt.key}`);
+      const popupElement = document.querySelector('.popup_opened')
       closePopup(popupElement);
-    } else return setEscapeButtonClose(popupElement)
-  }, {once: true});
+    }
+}
+
+//фукция отмены слушателя для закрытия клавишей esc
+function cancelEventByEsc() {
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 //функция открытия попап
 function openPopup(element) {
   element.classList.add('popup_opened');
-
-  setOverlayClose(element);
-  setEscapeButtonClose(element);
+  document.addEventListener('keydown', closeByEsc)
 }
 
 //функция закрытия попап
 function closePopup(element) {
   element.classList.remove('popup_opened');
+  cancelEventByEsc();
 }
 
 // функция внесения данных попап профиля
@@ -74,9 +84,7 @@ const createCard = (url, title) => {
   const cardItem = cardTemplate.querySelector('li').cloneNode(true);
 
   cardItem.querySelector('.cards__picture').src = url;
-  cardItem.querySelector(
-    '.cards__picture'
-  ).alt = `Картинка с названием "${title}"`;
+  cardItem.querySelector('.cards__picture').alt = `Картинка с названием "${title}"`;
 
   cardItem.querySelector('.cards__title').textContent = title;
 
