@@ -63,9 +63,13 @@ function hideInputError(formElement, inputElement) {
 
 //функция переключения состояния кнопки submit
 function toggleButtonState(inputList, buttonElement) {
-  hasInvalid(inputList)
-    ? buttonElement.classList.add(validationConfig.inactiveButtonClass)
-    : buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+  if (hasInvalid(inputList)){
+      buttonElement.classList.add(validationConfig.inactiveButtonClass);
+      buttonElement.disabled=true;
+    } else {
+      buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+      buttonElement.disabled=false;
+    }
 }
 
 //проверка на наличие ошибок среди полей
