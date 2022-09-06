@@ -67,7 +67,13 @@ function openPopup(element) {
 function closePopup(element) {
   element.classList.remove('popup_opened');
   cancelEventByEsc();
+
+  /*скрытие текста ошибки при закрытии*/
+  const inputElements = element.querySelectorAll('.form__input');
+  inputElements.forEach(inputElement =>
+    hideInputError(element, inputElement));
 }
+
 
 // функция внесения данных попап профиля
 function editInfo(evt) {
@@ -152,10 +158,6 @@ editButton.addEventListener('click', () => {
   jobInput.value = job.textContent;
   nameInput.value = name.textContent;
 
-  [jobInput, nameInput].forEach((element) =>//вызываю перепроверку наличия ошибки в полях ввода при открытии попапа
-    checkInputValidity(profilePopup, element)
-  );
-
   openPopup(profilePopup);
 });
 
@@ -167,7 +169,10 @@ addButton.addEventListener('click', () => {
   openPopup(cardPopup);
 });
 
-closeButtonAddPicture.addEventListener('click', () => closePopup(cardPopup));
+closeButtonAddPicture.addEventListener('click', () => {
+  closePopup(cardPopup);
+  formAddPicture.reset();
+});
 formAddPicture.addEventListener('submit', addPicture);
 
 //слушатель на закрытие попап фотографии

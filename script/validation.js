@@ -19,7 +19,7 @@ function enableValidation(config) {
       config.submitButtonSelector
     );
 
-    resetValidation(formElement, inputList, buttonElement)
+    //resetValidation(formElement, inputList, buttonElement);
     toggleButtonState(inputList, buttonElement);
 
     inputList.forEach((inputElement) => {
@@ -31,7 +31,7 @@ function enableValidation(config) {
 //установка слуашетлей на поля ввода
 function setEventListeners(formElement, inputElement, inputList, buttonElement) {
 
-  checkInputValidity(formElement, inputElement);
+  //checkInputValidity(formElement, inputElement);
 
   inputElement.addEventListener('input', () => {
     checkInputValidity(formElement, inputElement);
