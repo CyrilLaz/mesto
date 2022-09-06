@@ -73,9 +73,9 @@ function hasInvalid(inputList) {
   return inputList.some((inputElement) => inputElement.validity.valid === false);
 }
 
-//функция  для  перепроверки формы после удачного сабмита, иначе
+//функция  для  перепроверки формы , иначе
 function resetValidation(formElement, inputList, buttonElement) {
   formElement.addEventListener('submit',() => toggleButtonState(inputList, buttonElement));
-} //можно создавать пустые карточки
+} //после удачного сабмита можно создавать пустые карточки
 
 enableValidation(validationConfig);
