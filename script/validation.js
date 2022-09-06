@@ -31,8 +31,6 @@ function enableValidation(config) {
 //установка слуашетлей на поля ввода
 function setEventListeners(formElement, inputElement, inputList, buttonElement) {
 
-  //checkInputValidity(formElement, inputElement);
-
   inputElement.addEventListener('input', () => {
     checkInputValidity(formElement, inputElement);
     toggleButtonState(inputList, buttonElement);
@@ -76,10 +74,5 @@ function toggleButtonState(inputList, buttonElement) {
 function hasInvalid(inputList) {
   return inputList.some((inputElement) => inputElement.validity.valid === false);
 }
-
-//функция  для  перепроверки формы , иначе
-function resetValidation(formElement, inputList, buttonElement) {
-  formElement.addEventListener('submit',() => toggleButtonState(inputList, buttonElement));
-} //после удачного сабмита можно создавать пустые карточки
 
 enableValidation(validationConfig);
