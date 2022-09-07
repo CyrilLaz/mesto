@@ -83,14 +83,14 @@ const createCard = (url, title) => {
   const cardItem = cardTemplate.querySelector('.card__item').cloneNode(true);
   const cardPicture = cardItem.querySelector('.cards__picture');
   const cardTitle = cardItem.querySelector('.cards__title');
-  const likeIcon = cardItem.querySelector('.cards__like-icon');
+  const buttonLike = cardItem.querySelector('.cards__like-icon');
 
   cardPicture.src = url;
   cardPicture.alt = `Картинка с названием "${title}"`;
 
   cardTitle.textContent = title;
 
-  setListenersCard(cardItem, url, title, likeIcon);
+  setListenersCard(cardItem, url, title, buttonLike);
 
   return cardItem;
 };
@@ -108,8 +108,8 @@ const openPicture = (url, title) => {
 };
 
 //функция изменния лайка
-function handleLikeButton(like) {
-  like.classList.toggle('cards__like-icon_active');
+function handleLikeButton(buttonLike) {
+  buttonLike.classList.toggle('cards__like-icon_active');
 }
 
 //функция удаления карточки
@@ -118,10 +118,10 @@ function deleteCard(elementItem) {
 }
 
 //сборник слушателей на карточке
-const setListenersCard = (cardItem, url, title, like) => {
+const setListenersCard = (cardItem, url, title, buttonLike) => {
   cardItem
     .querySelector('.cards__like-icon')
-    .addEventListener('click', () => handleLikeButton(like));
+    .addEventListener('click', () => handleLikeButton(buttonLike));
   cardItem
     .querySelector('.cards__button-delete')
     .addEventListener('click', () => deleteCard(cardItem));
@@ -175,7 +175,6 @@ buttonOpenPopupCard.addEventListener('click', () => {
 
   openPopup(popupCard);
 });
-
   //на закрытие попапа создания карточек
 buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
   //на создания новой карточки
