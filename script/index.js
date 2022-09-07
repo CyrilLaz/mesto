@@ -155,34 +155,32 @@ buttonOpenPopupProfile.addEventListener('click', () => {
   inputJob.value = job.textContent;
   inputName.value = name.textContent;
 
+  makeButtonDisabled(buttonSubmitPopupProfile);
+  clearInputErrors(formPopupProfile);
+
   openPopup(popupProfile);
 });
   //на закрытие попап-профиля
-buttonClosePopupProfile.addEventListener('click', () => {
-  closePopup(popupProfile);
-  clearInputErrors(popupProfile);
-});
+buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
   //отправка изменений в профиле
-formPopupProfile.addEventListener('submit', (evt) => {
-  editInfo(evt);
-  makeButtonDisabled(buttonSubmitPopupProfile);
-});
+formPopupProfile.addEventListener('submit', editInfo);
 
 // слушатели на попап создания фотографий
   //на открытие попапа создания карточек
 buttonOpenPopupCard.addEventListener('click', () => {
+
+  makeButtonDisabled(buttonSubmitPopupCard);
+  formCardPopup.reset();
+  clearInputErrors(formCardPopup);
+
   openPopup(popupCard);
 });
+
   //на закрытие попапа создания карточек
-buttonClosePopupCard.addEventListener('click', () => {
-  closePopup(popupCard);
-  formCardPopup.reset();
-  clearInputErrors(popupCard);
-});
+buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
   //на создания новой карточки
 formCardPopup.addEventListener('submit', (evt) => {
   makeNewCard(evt);
-  makeButtonDisabled(buttonSubmitPopupCard);
 });
 
 //слушатель на закрытие попап фотографии
