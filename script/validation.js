@@ -1,12 +1,3 @@
-const validationConfig = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__button',
-  inactiveButtonClass: 'form__button_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error_visible',
-};
-
 //функция включения валидации: активация слушателей по полям и
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
@@ -19,7 +10,6 @@ function enableValidation(config) {
       config.submitButtonSelector
     );
 
-    //resetValidation(formElement, inputList, buttonElement);
     toggleButtonState(inputList, buttonElement);
 
     inputList.forEach((inputElement) => {
@@ -68,6 +58,17 @@ function toggleButtonState(inputList, buttonElement) {
       buttonElement.classList.remove(validationConfig.inactiveButtonClass);
       buttonElement.disabled=false;
     }
+}
+
+function makeButtonDisabled(button) {
+  button.disabled = true;
+  button.classList.add(validationConfig.inactiveButtonClass);
+}
+
+function clearInputErrors(formElement) {
+  const inputElements = formElement.querySelectorAll(validationConfig.inputSelector);
+  inputElements.forEach(inputElement =>
+    hideInputError(formElement, inputElement));
 }
 
 //проверка на наличие ошибок среди полей

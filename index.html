@@ -52,7 +52,7 @@
         <p class="footer__copyright">&copy;2022 Mesto Russia</p>
       </footer>
 
-      <section class="popup popup-profile" >
+      <div class="popup popup-profile" >
         <div class="popup__container">
           <form class="form" name="popupForm" novalidate>
             <h2 class="form__title">Редактировать профиль</h2>
@@ -82,9 +82,9 @@
           </form>
           <button type="button" class="popup__button-close"></button>
         </div>
-      </section>
+      </div>
 
-      <section class="popup popup-addPicture">
+      <div class="popup popup-addPicture">
         <div class="popup__container">
           <form class="form" name="popupForm" novalidate>
             <h2 class="form__title">Новое место</h2>
@@ -113,9 +113,9 @@
           </form>
           <button type="button" class="popup__button-close"></button>
         </div>
-      </section>
+      </div>
 
-      <section class="popup popup-picture">
+      <div class="popup popup-picture">
         <div class="popup-picture__container">
           <img
             class="popup-picture__picture"
@@ -125,10 +125,10 @@
           <h2 class="popup-picture__title"></h2>
           <button class="popup__button-close close-picture"></button>
         </div>
-      </section>
+      </div>
 
       <template id="card-template">
-        <li>
+        <li class="card__item">
           <figure class="cards__item">
             <img
                 class="cards__picture"
@@ -144,6 +144,7 @@
 
     </div>
     <script src="script/initial-cards.js"></script>
+    <script src="script/validation-config.js"></script>
     <script src="script/index.js"></script>
     <script src="script/validation.js"></script>
   </body>
