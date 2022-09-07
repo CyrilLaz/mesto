@@ -1,7 +1,7 @@
 const content = document.querySelector('.content');
 const popups = document.querySelectorAll('.popup');
 const popupProfile = document.querySelector('.popup-profile');
-const popupCard = document.querySelector('.popup-makeNewCard');
+const popupCard = document.querySelector('.popup-addPicture');
 const popupPicture = document.querySelector('.popup-picture');
 
 //переменные попап профиля
@@ -45,10 +45,10 @@ popups.forEach((popupElement)=>{
 
 //функция для закрытия попап клавишей esc
 function closeByEsc(evt) {
-    if (evt.key === 'Escape') {
-      const popupElement = document.querySelector('.popup_opened')
-      closePopup(popupElement);
-    }
+  if (evt.key === 'Escape') {
+    const popupElement = document.querySelector('.popup_opened')
+    closePopup(popupElement);
+  }
 }
 
 //фукция отмены слушателя для закрытия клавишей esc
