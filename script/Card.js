@@ -4,6 +4,7 @@ export class Card {
   #item;
   #popup;
   #openPopup;
+
   constructor(title, url, selector, popup, openPopup) {
     this.#title = title;
     this.#url = url;
@@ -16,6 +17,14 @@ export class Card {
   }
 
   createCard() {
+
+    this.#buildCard();
+    this.#setListenersCard();
+
+    return this.#item;
+  }
+
+  #buildCard() {
     const cardPicture = this.#item.querySelector(".cards__picture");
     const cardTitle = this.#item.querySelector(".cards__title");
 
@@ -23,9 +32,6 @@ export class Card {
     cardPicture.alt = `Картинка с названием "${this.#title}"`;
 
     cardTitle.textContent = this.#title;
-
-    this.#setListenersCard();
-    return this.#item;
   }
 
   #setListenersCard() {
@@ -62,86 +68,4 @@ export class Card {
 
     this.#openPopup(this.#popup);
   }
-} /*
-
-//функция открытия картинки в попапе
-const openPicture = (url, title) => {
-
-  imgPopupPicture.src = '';
-  imgPopupPicture.src = url;
-  imgPopupPicture.alt = `Тут находится картинка ${title}`;
-
-  titlePopupPicture.textContent = title;
-
-  openPopup(popupPicture);
-};
-
-//функция изменния лайка
-function handleLikeButton(buttonLike) {
-  buttonLike.classList.toggle('cards__like-icon_active');
 }
-
-//функция удаления карточки
-function deleteCard(elementItem) {
-  elementItem.remove();
-}
-
-//сборник слушателей на карточке
-const setListenersCard = (cardItem, url, title, buttonLike) => {
-  cardItem
-    .querySelector('.cards__like-icon')
-    .addEventListener('click', () => handleLikeButton(buttonLike));
-  cardItem
-    .querySelector('.cards__button-delete')
-    .addEventListener('click', () => deleteCard(cardItem));
-  cardItem
-    .querySelector('.cards__picture')
-    .addEventListener('click', () => openPicture(url, title));
-};
-
-
-// функция добавления фотографии из попапа
-function makeNewCard(evt) {
-  evt.preventDefault();
-
-  renderCard(urlInput.value, titleInput.value);
-
-  formCardPopup.reset();
-
-  closePopup(popupCard);
-}
-
-// слушатели на попап-профиле
-  //на открытие попап-профиле
-buttonOpenPopupProfile.addEventListener('click', () => {
-  inputJob.value = job.textContent;
-  inputName.value = name.textContent;
-
-  makeButtonDisabled(buttonSubmitPopupProfile);
-  clearInputErrors(formPopupProfile);
-
-  openPopup(popupProfile);
-});
-  //на закрытие попап-профиля
-buttonClosePopupProfile.addEventListener('click', () => closePopup(popupProfile));
-  //отправка изменений в профиле
-formPopupProfile.addEventListener('submit', editInfo);
-
-// слушатели на попап создания фотографий
-  //на открытие попапа создания карточек
-buttonOpenPopupCard.addEventListener('click', () => {
-
-  makeButtonDisabled(buttonSubmitPopupCard);
-  formCardPopup.reset();
-  clearInputErrors(formCardPopup);
-
-  openPopup(popupCard);
-});
-  //на закрытие попапа создания карточек
-buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
-  //на создания новой карточки
-formCardPopup.addEventListener('submit', (evt) => {
-  makeNewCard(evt);
-});
-
-*/
