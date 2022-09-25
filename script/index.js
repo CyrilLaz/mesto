@@ -31,16 +31,11 @@ const formPopupProfile = popupProfile.querySelector('.form');
 
 //переменные попап фотографии
 const buttonClosePopupPicture = popupPicture.querySelector('.close-picture');
+const imgPopupPicture = popupPicture.querySelector('.popup-picture__picture');
+const titlePopupPicture = popupPicture.querySelector('.popup-picture__title');
 
 initialCards.forEach((el) => {
-  const card = new Card(
-    el.name,
-    el.link,
-    '#card-template',
-    popupPicture,
-    openPopup
-  );
-  cardsList.prepend(card.renderCard());
+  cardsList.prepend(createCard(el.name, el.link));
 });
 
 //функция открытия попап
@@ -101,21 +96,36 @@ function editInfo(evt) {
   closePopup(popupProfile);
 }
 
+// функция создания карточки
+function createCard(name,url) {
+  const newCard = new Card(
+    name,
+    url,
+    '#card-template',
+    openPicture
+  );
+
+  return newCard.renderCard()
+}
+
 // функция добавления фотографии из попапа
 function makeNewCard(evt) {
   evt.preventDefault();
 
-  const newCard = new Card(
-    titleInput.value,
-    urlInput.value,
-    '#card-template',
-    popupPicture,
-    openPopup
-  );
-
-  cardsList.prepend(newCard.renderCard());
+  cardsList.prepend(createCard(titleInput.value, urlInput.value));
   formCardPopup.reset();
   closePopup(popupCard);
+}
+
+function openPicture(title,url) {
+
+  imgPopupPicture.src = '';
+  imgPopupPicture.src = url;
+  imgPopupPicture.alt = `Тут находится картинка ${title}`;
+
+  titlePopupPicture.textContent = title;
+
+  openPopup(popupPicture);
 }
 
 //на открытие попап-профиле

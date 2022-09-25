@@ -7,7 +7,7 @@ export default class {
     this.#config = config;
     this.#form = form;
     this.#inputList =
-      Array.from(this.#form.querySelectorAll(`${this.#config.inputSelector}`));
+      Array.from(this.#form.querySelectorAll(this.#config.inputSelector));
     this.#submitButton =
       this.#form.querySelector(this.#config.submitButtonSelector);
   }

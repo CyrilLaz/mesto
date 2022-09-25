@@ -2,14 +2,12 @@ export class Card {
   #title;
   #url;
   #item;
-  #popup;
-  #openPopup;
+  #openPicture
 
-  constructor(title, url, selector, popup, openPopup) {
+  constructor(title, url, selector, openPicture) {
     this.#title = title;
     this.#url = url;
-    this.#popup = popup;
-    this.#openPopup = openPopup;
+    this.#openPicture = openPicture;
     this.#item = document
       .querySelector(selector)
       .content.querySelector(".card__item")
@@ -43,7 +41,7 @@ export class Card {
       .addEventListener("click", () => this.#deleteCard());
     this.#item
       .querySelector(".cards__picture")
-      .addEventListener("click", () => this.#openPicture());
+      .addEventListener("click", () => this.#openPicture(this.#title, this.#url));
   }
 
   #handleLikeButton() {
@@ -54,18 +52,6 @@ export class Card {
 
   #deleteCard() {
     this.#item.remove();
-  }
-
-  #openPicture() {
-    const imgPopupPicture = this.#popup.querySelector('.popup-picture__picture');
-    const titlePopupPicture = this.#popup.querySelector('.popup-picture__title');
-
-    imgPopupPicture.src = '';
-    imgPopupPicture.src = this.#url;
-    imgPopupPicture.alt = `Тут находится картинка ${this.#title}`;
-
-    titlePopupPicture.textContent = this.#title;
-
-    this.#openPopup(this.#popup);
+    this.#item = null;
   }
 }
