@@ -1,6 +1,6 @@
 export default class {
   #inputList;
-  #buttonElement;
+  #submitButton;
   #config;
   #form;
   constructor(config, form) {
@@ -8,7 +8,7 @@ export default class {
     this.#form = form;
     this.#inputList =
       Array.from(this.#form.querySelectorAll(`${this.#config.inputSelector}`));
-    this.#buttonElement =
+    this.#submitButton =
       this.#form.querySelector(this.#config.submitButtonSelector);
   }
 
@@ -49,11 +49,11 @@ export default class {
 
   #toggleButtonState() {
     if (this.#hasInvalid()) {
-      this.#buttonElement.classList.add(this.#config.inactiveButtonClass);
-      this.#buttonElement.disabled = true;
+      this.#submitButton.classList.add(this.#config.inactiveButtonClass);
+      this.#submitButton.disabled = true;
     } else {
-      this.#buttonElement.classList.remove(this.#config.inactiveButtonClass);
-      this.#buttonElement.disabled = false;
+      this.#submitButton.classList.remove(this.#config.inactiveButtonClass);
+      this.#submitButton.disabled = false;
     }
   }
 
@@ -62,8 +62,8 @@ export default class {
   }
 
   makeButtonDisabled() {
-    this.#buttonElement.disabled = true;
-    this.#buttonElement.classList.add(this.#config.inactiveButtonClass);
+    this.#submitButton.disabled = true;
+    this.#submitButton.classList.add(this.#config.inactiveButtonClass);
   }
 
   clearInputErrors() {
