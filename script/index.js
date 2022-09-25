@@ -3,35 +3,33 @@ import { Card } from './Card.js';
 import { initialCards } from './initial-cards.js';
 import FormValidator from './FormValidator.js';
 
-//переменные попап добавления фотографий
+
+
+//переменные документа
 const content = document.querySelector('.content');
-
-const popupProfile = document.querySelector('.popup-profile');
-const popupCard = document.querySelector('.popup-addPicture');
-const formCardPopup = popupCard.querySelector('.form');
-const titleInput = formCardPopup.querySelector('.form__input_type_title');
-const urlInput = formCardPopup.querySelector('.form__input_type_url');
-const buttonClosePopupCard = popupCard.querySelector('.popup__button-close');
-
-//переменные попап профиля
-const buttonOpenPopupProfile = content.querySelector(
-  '.profile__button_type_edit'
-);
-const buttonOpenPopupCard = content.querySelector('.profile__button_type_add');
-const name = content.querySelector('.profile__name');
-const job = content.querySelector('.profile__subname');
-const formPopupProfile = popupProfile.querySelector('.form');
-const inputName = formPopupProfile.querySelector('.form__input_type_name');
-const inputJob = formPopupProfile.querySelector('.form__input_type_job');
-const buttonClosePopupProfile = popupProfile.querySelector(
-  '.popup__button-close'
-);
-
-const cardsList = document.querySelector('.cards__list'); //контейнер для карточек
-const popupPicture = document.querySelector('.popup-picture');
+  const name = content.querySelector('.profile__name');
+  const job = content.querySelector('.profile__subname');
+  const cardsList = content.querySelector('.cards__list');
+  const buttonOpenPopupCard = content.querySelector('.profile__button_type_add');
+  const buttonOpenPopupProfile = content.querySelector('.profile__button_type_edit');
+// поппапы
 const popups = document.querySelectorAll('.popup');
+  const popupProfile = document.querySelector('.popup-profile');
+  const popupCard = document.querySelector('.popup-addPicture');
+  const popupPicture = document.querySelector('.popup-picture');
+// переменные попапа картчоек
+const formCardPopup = popupCard.querySelector('.form');
+  const titleInput = formCardPopup.querySelector('.form__input_type_title');
+  const urlInput = formCardPopup.querySelector('.form__input_type_url');
+  const buttonClosePopupCard = popupCard.querySelector('.popup__button-close');
 
-//переменные попап открытия фотографии
+// переменные попапа профиля
+const formPopupProfile = popupProfile.querySelector('.form');
+  const inputName = formPopupProfile.querySelector('.form__input_type_name');
+  const inputJob = formPopupProfile.querySelector('.form__input_type_job');
+  const buttonClosePopupProfile = popupProfile.querySelector('.popup__button-close');
+
+//переменные попап фотографии
 const buttonClosePopupPicture = popupPicture.querySelector('.close-picture');
 
 initialCards.forEach((el) => {
@@ -42,7 +40,7 @@ initialCards.forEach((el) => {
     popupPicture,
     openPopup
   );
-  cardsList.prepend(card.createCard());
+  cardsList.prepend(card.renderCard());
 });
 
 //функция открытия попап
@@ -76,23 +74,22 @@ function setCloseByOverlay(popupElement) {
     if (evt.target === evt.currentTarget) closePopup(popupElement);
   });
 }
+
 //на закрытие попапа создания карточек
 buttonClosePopupCard.addEventListener('click', () => closePopup(popupCard));
+
 //слушатель на закрытие попап фотографии
 buttonClosePopupPicture.addEventListener('click', () =>
   closePopup(popupPicture)
 );
 
+//прокидываем на попапы
 popups.forEach((popupElement) => {
   setCloseByOverlay(popupElement);
 });
 
-
-
 //на создания новой карточки
-formCardPopup.addEventListener('submit', (evt) => {
-  makeNewCard(evt);
-});
+formCardPopup.addEventListener('submit', makeNewCard);
 
 // функция внесения данных попап профиля
 function editInfo(evt) {
@@ -108,7 +105,7 @@ function editInfo(evt) {
 function makeNewCard(evt) {
   evt.preventDefault();
 
-  const card = new Card(
+  const newCard = new Card(
     titleInput.value,
     urlInput.value,
     '#card-template',
@@ -116,10 +113,8 @@ function makeNewCard(evt) {
     openPopup
   );
 
-  cardsList.prepend(card.createCard());
-
+  cardsList.prepend(newCard.renderCard());
   formCardPopup.reset();
-
   closePopup(popupCard);
 }
 
@@ -142,7 +137,6 @@ buttonClosePopupProfile.addEventListener('click', () =>
 //отправка изменений в профиле
 formPopupProfile.addEventListener('submit', editInfo);
 
-// слушатели на попап создания фотографий
 //на открытие попапа создания карточек
 buttonOpenPopupCard.addEventListener('click', () => {
 

@@ -16,15 +16,15 @@ export class Card {
       .cloneNode(true);
   }
 
-  createCard() {
+  renderCard() {
 
-    this.#buildCard();
+    this.#createCard();
     this.#setListenersCard();
 
     return this.#item;
   }
 
-  #buildCard() {
+  #createCard() {
     const cardPicture = this.#item.querySelector(".cards__picture");
     const cardTitle = this.#item.querySelector(".cards__title");
 
