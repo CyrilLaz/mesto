@@ -2,7 +2,7 @@ export class Card {
   #title;
   #url;
   #item;
-  #openPicture
+  #openPicture;
 
   constructor(title, url, selector, openPicture) {
     this.#title = title;
