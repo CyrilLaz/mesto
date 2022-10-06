@@ -2,6 +2,7 @@ import { validationConfig as config } from './validation-config.js';
 import { Card } from './Card.js';
 import { initialCards } from './initial-cards.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js'
 
 
 
@@ -9,7 +10,7 @@ import FormValidator from './FormValidator.js';
 const content = document.querySelector('.content');
   const name = content.querySelector('.profile__name');
   const job = content.querySelector('.profile__subname');
-  const cardsList = content.querySelector('.cards__list');
+
   const buttonOpenPopupCard = content.querySelector('.profile__button_type_add');
   const buttonOpenPopupProfile = content.querySelector('.profile__button_type_edit');
 // поппапы
@@ -34,9 +35,6 @@ const buttonClosePopupPicture = popupPicture.querySelector('.close-picture');
 const imgPopupPicture = popupPicture.querySelector('.popup-picture__picture');
 const titlePopupPicture = popupPicture.querySelector('.popup-picture__title');
 
-initialCards.forEach((el) => {
-  cardsList.prepend(createCard(el.name, el.link));
-});
 
 //функция открытия попап
 function openPopup(element) {
@@ -112,7 +110,8 @@ function createCard(name,url) {
 function makeNewCard(evt) {
   evt.preventDefault();
 
-  cardsList.prepend(createCard(titleInput.value, urlInput.value));
+  renderCard.addItem(createCard(titleInput.value, urlInput.value));// создание карточки из экземпляра класса section
+
   formCardPopup.reset();
   closePopup(popupCard);
 }
@@ -157,6 +156,17 @@ buttonOpenPopupCard.addEventListener('click', () => {
 
   openPopup(popupCard);
 });
+
+ // внесение карточек в контейнер
+ const renderCard = new Section({
+  items:initialCards.map((el)=>createCard(el.name, el.link)),
+renderer: (element, container)=>{
+  container.prepend(element)
+  }
+}, '.cards__list');
+
+
+ renderCard.addItems();
 
  //валидация
 const validFormProfile = new FormValidator(config, formPopupProfile);
