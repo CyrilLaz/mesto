@@ -5,15 +5,16 @@ export default class {
   #form;
   constructor(config, form) {
     this.#config = config;
-    this.#form = form;
-    this.#inputList =
-      Array.from(this.#form.querySelectorAll(this.#config.inputSelector));
-    this.#submitButton =
-      this.#form.querySelector(this.#config.submitButtonSelector);
+    this.#form = document.querySelector(form);
+    this.#inputList = Array.from(
+      this.#form.querySelectorAll(this.#config.inputSelector)
+    );
+    this.#submitButton = this.#form.querySelector(
+      this.#config.submitButtonSelector
+    );
   }
 
   enableValidation() {
-
     this.#toggleButtonState();
 
     this.#inputList.forEach((inputElement) => {
@@ -58,7 +59,9 @@ export default class {
   }
 
   #hasInvalid() {
-    return this.#inputList.some((inputElement) => inputElement.validity.valid === false);
+    return this.#inputList.some(
+      (inputElement) => inputElement.validity.valid === false
+    );
   }
 
   makeButtonDisabled() {
@@ -67,9 +70,8 @@ export default class {
   }
 
   clearInputErrors() {
-    this.#inputList.forEach(inputElement =>
-      this.#hideInputError(inputElement));
+    this.#inputList.forEach((inputElement) =>
+      this.#hideInputError(inputElement)
+    );
   }
 }
-
-

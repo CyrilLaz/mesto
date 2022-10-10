@@ -1,3 +1,5 @@
 node_modules
 dist
 instruction 8.txt
+.prettierrc
+.vscode
