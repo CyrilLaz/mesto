@@ -7,6 +7,7 @@ import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 import { buttonOpenPopupCard,buttonOpenPopupProfile } from "./constants.js";
+import '../pages/index.css';
 
 //на открытие попапа создания карточек
 buttonOpenPopupCard.addEventListener('click', () => {
