@@ -8,8 +8,8 @@ export default class PopupWithForm extends Popup {
   }
 
   set setInputs(inputsValue) {
-    this.inputs.forEach((element, index) => {
-      element.value = inputsValue[index];
+    this.inputs.forEach((element) => {
+      element.value = inputsValue[element.name];
     });
   }
 
@@ -21,6 +21,7 @@ export default class PopupWithForm extends Popup {
   _setSubmit(evt) {
     evt.preventDefault();
     const values = this._getInputValues();
+    console.log(values);
     this.submit(values);
 
     this.close();
@@ -32,6 +33,10 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    return Array.from(this.inputs).map((el) => el.value);
+    return Array.from(this.inputs).reduce((initial, el) => {
+      initial[el.name] = el.value;
+      return initial;
+    }, {});
+
   }
 }

@@ -50,8 +50,7 @@ export default class {
 
   #toggleButtonState() {
     if (this.#hasInvalid()) {
-      this.#submitButton.classList.add(this.#config.inactiveButtonClass);
-      this.#submitButton.disabled = true;
+      this.makeButtonDisabled();
     } else {
       this.#submitButton.classList.remove(this.#config.inactiveButtonClass);
       this.#submitButton.disabled = false;

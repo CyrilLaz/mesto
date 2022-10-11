@@ -1,12 +1,15 @@
-import { validationConfig as config } from './validation-config.js';
-import { Card } from './Card.js';
-import { initialCards } from './initial-cards.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
-import { buttonOpenPopupCard,buttonOpenPopupProfile } from "./constants.js";
+import { validationConfig as config } from '../utils/validation-config.js';
+import { Card } from '../components/Card.js';
+import { initialCards } from '../utils/initial-cards.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import {
+  buttonOpenPopupCard,
+  buttonOpenPopupProfile,
+} from '../utils/constants.js';
 import '../pages/index.css';
 
 //на открытие попапа создания карточек
@@ -31,12 +34,16 @@ const userInfo = new UserInfo({
   jobSelector: '.profile__subname',
 });
 
-//----------------
-const popupCard = new PopupWithForm('.popup-addPicture', ([title, url]) => {
+//---------------
+const makeNewCard = function (title, url) {
   const newCard = new Card(title, url, '#card-template', () =>
     popupWithImage.open(title, url)
   );
-  renderCard.addItem(newCard.renderCard());
+  return newCard.getCard();
+};
+//----------------
+const popupCard = new PopupWithForm('.popup-addPicture', (values) => {
+  renderCard.addItem(makeNewCard(values.pictureName, values.pictureUrl));
 });
 popupCard.setEventListeners();
 
@@ -53,20 +60,18 @@ popupWithImage.setEventListeners();
 // внесение карточек в контейнер
 const renderCard = new Section(
   {
-    items: initialCards.map((el) => {
-      const card = new Card(el.name, el.link, '#card-template', () =>
-        popupWithImage.open(el.name, el.link)
-      );
-      return card.renderCard();
-    }),
     renderer: (element, container) => {
       container.prepend(element);
     },
   },
   '.cards__list'
 );
-
-renderCard.addItems();
+//--------------------
+renderCard.addItems(
+  initialCards.map((el) =>
+    makeNewCard(el.name, el.link)
+  )
+);
 
 //валидация
 const validFormProfile = new FormValidator(config, '.popup-profile .form');

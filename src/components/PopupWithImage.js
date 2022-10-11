@@ -9,7 +9,7 @@ export default class PopupWithImage extends Popup {
   }
 
   open (title,url) {
-    this.imgPopup.src = "";
+    //this.imgPopup.src = ""; //прежде без этого при открытии попапа первые доли секунды отображалась прежде открытая картинка, сейчас же вроде нет такого
     this.imgPopup.src = url;
     this.imgPopup.alt = `Тут находится картинка ${title}`;
 

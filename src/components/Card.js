@@ -10,12 +10,11 @@ export class Card {
     this.#openPicture = openPicture;
     this.#item = document
       .querySelector(selector)
-      .content.querySelector(".card__item")
+      .content.querySelector('.card__item')
       .cloneNode(true);
   }
 
-  renderCard() {
-
+  getCard() {
     this.#createCard();
     this.#setListenersCard();
 
@@ -23,8 +22,8 @@ export class Card {
   }
 
   #createCard() {
-    const cardPicture = this.#item.querySelector(".cards__picture");
-    const cardTitle = this.#item.querySelector(".cards__title");
+    const cardPicture = this.#item.querySelector('.cards__picture');
+    const cardTitle = this.#item.querySelector('.cards__title');
 
     cardPicture.src = this.#url;
     cardPicture.alt = `Картинка с названием "${this.#title}"`;
@@ -34,20 +33,22 @@ export class Card {
 
   #setListenersCard() {
     this.#item
-      .querySelector(".cards__like-icon")
-      .addEventListener("click", () => this.#handleLikeButton());
+      .querySelector('.cards__like-icon')
+      .addEventListener('click', () => this.#handleLikeButton());
     this.#item
-      .querySelector(".cards__button-delete")
-      .addEventListener("click", () => this.#deleteCard());
+      .querySelector('.cards__button-delete')
+      .addEventListener('click', () => this.#deleteCard());
     this.#item
-      .querySelector(".cards__picture")
-      .addEventListener("click", () => this.#openPicture(this.#title, this.#url));
+      .querySelector('.cards__picture')
+      .addEventListener('click', () =>
+        this.#openPicture(this.#title, this.#url)
+      );
   }
 
   #handleLikeButton() {
     this.#item
-      .querySelector(".cards__like-icon")
-      .classList.toggle("cards__like-icon_active");
+      .querySelector('.cards__like-icon')
+      .classList.toggle('cards__like-icon_active');
   }
 
   #deleteCard() {
