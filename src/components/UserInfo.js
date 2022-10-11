@@ -5,7 +5,7 @@ export default class UserInfo {
   }
 
   get getUserInfo() {
-    return { userName: this.name.textContent, userJob: this.job.textContent }; //некоторая связанность в именах получается, если name полей ввода будут другие то работать не будет...
+    return { userName: this.name.textContent, userJob: this.job.textContent };
   }
 
   set setUserInfo(values) {
