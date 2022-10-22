@@ -1,6 +1,5 @@
 import { validationConfig as config } from '../utils/validation-config.js';
 import { Card } from '../components/Card.js';
-import { initialCards } from '../utils/initial-cards.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -9,8 +8,40 @@ import UserInfo from '../components/UserInfo.js';
 import {
   buttonOpenPopupCard,
   buttonOpenPopupProfile,
+  userAvatar,
 } from '../utils/constants.js';
 import '../pages/index.css';
+import Api from '../components/Api.js';
+//---------------------------------------
+
+//------------------------------------------
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
+  headers: {
+    authorization: 'eec9246c-b7c7-4dd5-846f-1c8a00774f54',
+    'Content-Type': 'application/json',
+  },
+});
+//-------
+api
+  .getInitialCards()
+  .then((res) => {
+    renderCard.addItems(res.map((el) => makeNewCard(el.name, el.link)));
+  })
+  .catch((err) => console.log(err));
+
+//------------
+api
+  .getUserInfo()
+  .then((res) => {
+    userInfo.setUserInfo = {
+      userName: res.name,
+      userJob: res.about,
+    };
+    userInfo.setUserAvatar = res.avatar
+  })
+  .catch((err) => console.log(err));
+//-------------
 
 //на открытие попапа создания карточек
 buttonOpenPopupCard.addEventListener('click', () => {
@@ -32,6 +63,7 @@ buttonOpenPopupProfile.addEventListener('click', () => {
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__subname',
+  avatarSelector: '.profile__avatar',
 });
 
 //---------------
@@ -43,13 +75,26 @@ const makeNewCard = function (title, url) {
 };
 //----------------
 const popupCard = new PopupWithForm('.popup-addPicture', (values) => {
-  renderCard.addItem(makeNewCard(values.pictureName, values.pictureUrl));
+  api.addNewCard(values.pictureName,values.pictureUrl)
+  .then(res=>{
+    renderCard.addItem(makeNewCard(res.name, res.link));
+  })
+  .catch(err=>console.log(err))
+
 });
 popupCard.setEventListeners();
 
 //----------------------------------
 const popupProfile = new PopupWithForm('.popup-profile', (values) => {
-  userInfo.setUserInfo = values;
+  api
+    .changeUserInfo(values)
+    .then((res) => {
+      userInfo.setUserInfo = {
+        userName: res.name,
+        userJob: res.about,
+      };
+    })
+    .catch((err) => console.log(err));
 });
 popupProfile.setEventListeners();
 
@@ -67,11 +112,6 @@ const renderCard = new Section(
   '.cards__list'
 );
 //--------------------
-renderCard.addItems(
-  initialCards.map((el) =>
-    makeNewCard(el.name, el.link)
-  )
-);
 
 //валидация
 const validFormProfile = new FormValidator(config, '.popup-profile .form');
