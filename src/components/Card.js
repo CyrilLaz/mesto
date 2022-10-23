@@ -1,17 +1,22 @@
 export class Card {
   #title;
   #url;
+  // #cardId;
   #item;
   #openPicture;
-
-  constructor(title, url, selector, openPicture) {
+  #changeLike;
+  constructor(title, url, selector, openPicture, changeLike,deleteCard) {
     this.#title = title;
     this.#url = url;
+    //this. #cardId = cardId
     this.#openPicture = openPicture;
+    this.#changeLike = changeLike;
     this.#item = document
       .querySelector(selector)
       .content.querySelector('.card__item')
       .cloneNode(true);
+
+    this.likeButton = this.#item.querySelector('.cards__like-icon');
   }
 
   getCard() {
@@ -32,9 +37,7 @@ export class Card {
   }
 
   #setListenersCard() {
-    this.#item
-      .querySelector('.cards__like-icon')
-      .addEventListener('click', () => this.#handleLikeButton());
+    this.likeButton.addEventListener('click', () => this.#changeLike());
     this.#item
       .querySelector('.cards__button-delete')
       .addEventListener('click', () => this.#deleteCard());
@@ -45,10 +48,14 @@ export class Card {
       );
   }
 
-  #handleLikeButton() {
-    this.#item
-      .querySelector('.cards__like-icon')
-      .classList.toggle('cards__like-icon_active');
+  handleLikeButton(isLike) {
+    !!isLike
+      ? this.likeButton.classList.add('cards__like-icon_active')
+      : this.likeButton.classList.remove('cards__like-icon_active');
+  }
+
+  set setCountLike(number) {
+    this.#item.querySelector('.cards__like-counter').textContent = number;
   }
 
   #deleteCard() {

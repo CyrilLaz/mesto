@@ -32,7 +32,7 @@ export default class Api {
     });
   }
 
-  addNewCard(name,link) {
+  addNewCard(name, link) {
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: this.headers,
@@ -60,6 +60,38 @@ export default class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
+
+  findCardById(id) {
+    return this.getInitialCards().then(res =>
+      res.find((res) => (res._id === id)));
+  }
+
+
+
+  addLike(cardId){
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+
+  removeLike(cardId){
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+
 
   // другие методы работы с API
 }

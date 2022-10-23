@@ -8,7 +8,6 @@ import UserInfo from '../components/UserInfo.js';
 import {
   buttonOpenPopupCard,
   buttonOpenPopupProfile,
-  userAvatar,
 } from '../utils/constants.js';
 import '../pages/index.css';
 import Api from '../components/Api.js';
@@ -26,11 +25,12 @@ const api = new Api({
 api
   .getInitialCards()
   .then((res) => {
-    renderCard.addItems(res.map((el) => makeNewCard(el.name, el.link)));
+    renderCard.addItems(res.map((el) => makeNewCard(el)));
   })
   .catch((err) => console.log(err));
 
 //------------
+const user = {};
 api
   .getUserInfo()
   .then((res) => {
@@ -38,11 +38,11 @@ api
       userName: res.name,
       userJob: res.about,
     };
-    userInfo.setUserAvatar = res.avatar
+    userInfo.setUserAvatar = res.avatar;
   })
   .catch((err) => console.log(err));
 //-------------
-
+//console.log(userId);
 //на открытие попапа создания карточек
 buttonOpenPopupCard.addEventListener('click', () => {
   validFormCard.makeButtonDisabled();
@@ -67,20 +67,56 @@ const userInfo = new UserInfo({
 });
 
 //---------------
-const makeNewCard = function (title, url) {
-  const newCard = new Card(title, url, '#card-template', () =>
-    popupWithImage.open(title, url)
+const makeNewCard = function (el) {
+  const newCard = new Card(
+    el.name,
+    el.link,
+    // el._id,
+    '#card-template',
+    () => popupWithImage.open(el.name, el.link),
+    () => {
+      const user = userInfo.getUserInfo;
+      api.findCardById(el._id).then((res) => {
+        if (
+          res.likes.find(
+            (el) => el.name === user.userName && el.about === user.userJob
+          )
+        ) {
+          api.removeLike(el._id).then((res) => {
+            newCard.handleLikeButton(false);
+            newCard.setCountLike = res.likes.length;
+          }); //некотрая задержка есть в изменении количества лайков, что если ...
+        } else {
+
+          api
+            .addLike(el._id)
+            .then((res) => {
+              newCard.handleLikeButton(true);
+              newCard.setCountLike = res.likes.length;
+            });
+        }
+      });
+    }
   );
+  newCard.handleLikeButton(
+    el.likes.find(
+      (el) =>
+        el.name === userInfo.getUserInfo.userName &&
+        el.about === userInfo.getUserInfo.userJob
+    )
+  );
+  newCard.setCountLike = el.likes.length;
+
   return newCard.getCard();
 };
 //----------------
 const popupCard = new PopupWithForm('.popup-addPicture', (values) => {
-  api.addNewCard(values.pictureName,values.pictureUrl)
-  .then(res=>{
-    renderCard.addItem(makeNewCard(res.name, res.link));
-  })
-  .catch(err=>console.log(err))
-
+  api
+    .addNewCard(values.pictureName, values.pictureUrl)
+    .then((res) => {
+      renderCard.addItem(makeNewCard(res));
+    })
+    .catch((err) => console.log(err));
 });
 popupCard.setEventListeners();
 

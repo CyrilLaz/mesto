@@ -35,6 +35,8 @@
 @import url(../blocks/cards/__picture/cards__picture.css);
 @import url(../blocks/cards/__capture/cards__capture.css);
 @import url(../blocks/cards/__title/cards__title.css);
+@import url(../blocks/cards/__like/cards__like.css);
+@import url(../blocks/cards/__like-counter/cards__like-counter.css);
 @import url(../blocks/cards/__like-icon/cards__like-icon.css);
 @import url(../blocks/cards/__like-icon/_active/cards__like-icon_active.css);
 @import url(../blocks/cards/__button-delete/cards__button-delete.css);
