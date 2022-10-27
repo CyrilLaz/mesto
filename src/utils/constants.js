@@ -7,3 +7,7 @@ export const buttonOpenPopupCard = content.querySelector(
 export const buttonOpenPopupProfile = content.querySelector(
   '.profile__button_type_edit'
 );
+
+export const avatarPicture = content.querySelector(
+  '.profile__avatar'
+);

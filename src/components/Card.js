@@ -1,14 +1,14 @@
 export class Card {
   #title;
   #url;
-  // #cardId;
+  #deleteCard;
   #item;
   #openPicture;
   #changeLike;
-  constructor(title, url, selector, openPicture, changeLike,deleteCard) {
+  constructor(title, url, selector, { openPicture, changeLike, deleteCard }) {
     this.#title = title;
     this.#url = url;
-    //this. #cardId = cardId
+    this.#deleteCard = deleteCard;
     this.#openPicture = openPicture;
     this.#changeLike = changeLike;
     this.#item = document
@@ -17,6 +17,7 @@ export class Card {
       .cloneNode(true);
 
     this.likeButton = this.#item.querySelector('.cards__like-icon');
+    this.deleteButton = this.#item.querySelector('.cards__button-delete');
   }
 
   getCard() {
@@ -38,9 +39,9 @@ export class Card {
 
   #setListenersCard() {
     this.likeButton.addEventListener('click', () => this.#changeLike());
-    this.#item
-      .querySelector('.cards__button-delete')
-      .addEventListener('click', () => this.#deleteCard());
+    this.deleteButton.addEventListener('click', () => {
+      this.#deleteCard();
+    });
     this.#item
       .querySelector('.cards__picture')
       .addEventListener('click', () =>
@@ -48,8 +49,13 @@ export class Card {
       );
   }
 
-  handleLikeButton(isLike) {
-    !!isLike
+  deleteCardFromDom() {
+    this.#item.remove();
+    this.#item = null;
+  }
+
+  handleLikeButton(isLiked) {
+    isLiked
       ? this.likeButton.classList.add('cards__like-icon_active')
       : this.likeButton.classList.remove('cards__like-icon_active');
   }
@@ -58,8 +64,9 @@ export class Card {
     this.#item.querySelector('.cards__like-counter').textContent = number;
   }
 
-  #deleteCard() {
-    this.#item.remove();
-    this.#item = null;
+  showDeleteIcon(isShowed) {
+    isShowed
+      ? this.deleteButton.classList.add('cards__button-delete_active')
+      : this.deleteButton.classList.remove('cards__button-delete_active');
   }
 }

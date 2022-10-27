@@ -62,13 +62,12 @@ export default class Api {
   }
 
   findCardById(id) {
-    return this.getInitialCards().then(res =>
-      res.find((res) => (res._id === id)));
+    return this.getInitialCards().then((res) =>
+      res.find((res) => res._id === id)
+    );
   }
 
-
-
-  addLike(cardId){
+  addLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this.headers,
@@ -80,7 +79,7 @@ export default class Api {
     });
   }
 
-  removeLike(cardId){
+  removeLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this.headers,
@@ -92,6 +91,31 @@ export default class Api {
     });
   }
 
+  removeCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
 
+  changeAvatar(url) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar: url,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
   // другие методы работы с API
 }

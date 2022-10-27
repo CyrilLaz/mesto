@@ -24,7 +24,9 @@
 
       <section class="profile">
         <div class="profile__info-container">
-          <img class="profile__avatar" alt="фотография профиля" src="" />
+          <div class="profile__avatar"><img class="profile__avatar-img" alt="фотография профиля" src="" />
+            <div class="profile__avatar-hover"></div>
+          </div>
           <div class="profile__info">
             <h1 class="profile__name"></h1>
             <p class="profile__subname"></p>
@@ -92,6 +94,34 @@
       </div>
     </div>
 
+    <div class="popup popup-changeAvatar">
+      <div class="popup__container">
+        <form class="form" name="popupAvatar" novalidate>
+          <h2 class="form__title">Обновить аватар</h2>
+          <fieldset class="form__input-container">
+            <input name="avatarUrl" type="url" placeholder="Ссылкак на фотографию профиля"
+              class="form__input form__input_type_url" required />
+            <span class="form__input-error avatarUrl-error"></span>
+          </fieldset>
+          <button type="submit" class="form__button">
+            Сохранить
+          </button>
+        </form>
+        <button type="button" class="popup__button-close"></button>
+      </div>
+    </div>
+    <div class="popup popup-confirmation">
+      <div class="popup__container"><form class="form">
+        <h2 class="form__title">Вы уверены?</h2>
+        <input hidden name="cardId" class="form__input" value="" type="text"/>
+        <button type="submit" class="form__button">
+          Да
+        </button>
+      </form>
+      <button type="button" class="popup__button-close"></button>
+    </div>
+
+    </div>
     <template id="card-template">
       <li class="card__item">
         <figure class="cards__item">
