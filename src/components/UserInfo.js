@@ -6,11 +6,16 @@ export default class UserInfo {
   }
 
   get getUserInfo() {
-    return { userName: this.name.textContent, userJob: this.job.textContent , urlAvatar:this.avatar.src, userId:this.userId};
+    return {
+      userName: this.name.textContent,
+      userJob: this.job.textContent,
+      urlAvatar: this.avatar.src,
+      userId: this.userId,
+    };
   }
 
   set setUserInfo(values) {
-    const { userName, userJob, userId} = values;
+    const { userName, userJob, userId } = values;
 
     this.name.textContent = userName;
     this.job.textContent = userJob;
@@ -20,5 +25,4 @@ export default class UserInfo {
   setUserAvatar(url) {
     this.avatar.src = url;
   }
-
-  }
+}

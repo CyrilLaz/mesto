@@ -112,8 +112,9 @@ const makeNewCard = function (el) {
   newCard.handleLikeButton(
     el.likes.find((el) => el._id === userInfo.getUserInfo.userId)
   );
-  newCard.showDeleteIcon(el.owner._id === userInfo.getUserInfo.userId);
   newCard.setLikes = el.likes;
+  newCard.showDeleteIcon(el.owner._id === userInfo.getUserInfo.userId);
+  
   return newCard.getCard();
 };
 //----------------
