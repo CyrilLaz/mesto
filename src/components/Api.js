@@ -61,12 +61,6 @@ export default class Api {
     });
   }
 
-  findCardById(id) {
-    return this.getInitialCards().then((res) =>
-      res.find((res) => res._id === id)
-    );
-  }
-
   addLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
@@ -117,5 +111,5 @@ export default class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
-  // другие методы работы с API
+
 }

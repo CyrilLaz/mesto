@@ -25,11 +25,10 @@ const api = new Api({
   },
 });
 //-------
-
 api
   .getInitialCards()
   .then((res) => {
-    renderCard.addItems(res.map((el) => makeNewCard(el)));
+    renderCard.addItems(res.reverse().map((el) => makeNewCard(el)));
   })
   .catch((err) => console.log(err));
 
@@ -43,11 +42,11 @@ api
       userJob: res.about,
       userId: res._id,
     };
-    userInfo.setUserAvatar = res.avatar;
+    userInfo.setUserAvatar(res.avatar);
   })
   .catch((err) => console.log(err));
 //-------------
-//console.log(userId);
+
 //на открытие попапа создания карточек
 buttonOpenPopupCard.addEventListener('click', () => {
   validFormCard.makeButtonDisabled();
@@ -70,7 +69,7 @@ avatarPicture.addEventListener('click', () => {
   validFormAvatar.clearInputErrors();
   popupAvatar.open();
 });
-
+//-------------
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   jobSelector: '.profile__subname',
@@ -82,21 +81,27 @@ const makeNewCard = function (el) {
   const newCard = new Card(el.name, el.link, '#card-template', {
     openPicture: () => popupWithImage.open(el.name, el.link),
     changeLike: () => {
-      api.findCardById(el._id).then((res) => {
-        if (
-          res.likes.find((item) => item._id === userInfo.getUserInfo.userId)
-        ) {
-          api.removeLike(el._id).then((res) => {
+      if (
+        newCard.getLikes.find(
+          (item) => item._id === userInfo.getUserInfo.userId
+        )
+      ) {
+        api
+          .removeLike(el._id)
+          .then((res) => {
             newCard.handleLikeButton(false);
-            newCard.setCountLike = res.likes.length;
-          });
-        } else {
-          api.addLike(el._id).then((res) => {
+            newCard.setLikes = res.likes;
+          })
+          .catch((err) => console.log(err));
+      } else {
+        api
+          .addLike(el._id)
+          .then((res) => {
             newCard.handleLikeButton(true);
-            newCard.setCountLike = res.likes.length;
-          });
-        }
-      });
+            newCard.setLikes = res.likes;
+          })
+          .catch((err) => console.log(err));
+      }
     },
     deleteCard: () => {
       popupWithConfirmation.setInputs = { cardId: el._id };
@@ -108,8 +113,7 @@ const makeNewCard = function (el) {
     el.likes.find((el) => el._id === userInfo.getUserInfo.userId)
   );
   newCard.showDeleteIcon(el.owner._id === userInfo.getUserInfo.userId);
-
-  newCard.setCountLike = el.likes.length;
+  newCard.setLikes = el.likes;
   return newCard.getCard();
 };
 //----------------
@@ -144,8 +148,8 @@ const popupAvatar = new PopupWithForm('.popup-changeAvatar', (value) => {
   api
     .changeAvatar(value.avatarUrl)
     .then((res) => {
-      userInfo.setUserAvatar = res.avatar
-      popupAvatar.close().bind(popupAvatar);
+      userInfo.setUserAvatar(res.avatar);
+      popupAvatar.close();
     })
     .catch((err) => console.log(err));
 });
@@ -169,7 +173,7 @@ const popupWithConfirmation = new PopupWithConfirmation(
   (value) =>
     api
       .removeCard(value.cardId)
-      .then((res) => console.log(res)) //пост удален
+      .then((res) => console.log(res.message)) //пост удален
       .catch((err) => console.log(err))
 );
 

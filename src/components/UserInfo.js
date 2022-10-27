@@ -17,7 +17,7 @@ export default class UserInfo {
     this.userId = userId;
   }
 
-  set setUserAvatar(url) {
+  setUserAvatar(url) {
     this.avatar.src = url;
   }
 

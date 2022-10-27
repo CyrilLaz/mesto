@@ -60,8 +60,14 @@ export class Card {
       : this.likeButton.classList.remove('cards__like-icon_active');
   }
 
-  set setCountLike(number) {
-    this.#item.querySelector('.cards__like-counter').textContent = number;
+  set setLikes(likesArray) {
+
+    this.likesArray = likesArray;
+    this.#item.querySelector('.cards__like-counter').textContent = this.likesArray.length;
+  }
+
+  get getLikes(){
+    return this.likesArray;
   }
 
   showDeleteIcon(isShowed) {

@@ -10,10 +10,7 @@ export default class PopupWithForm extends Popup {
 
   set setInputs(inputsValue) {
     this.inputs.forEach((element) => {
-      console.log(inputsValue);
-
       element.value = inputsValue[element.name];
-      console.log(element.value);
     });
   }
 
@@ -23,18 +20,16 @@ export default class PopupWithForm extends Popup {
 
   close() {
     this.popup.querySelector('.form').reset();
-    this._changeTextButton('Готово');
     super.close();
   }
 
-open() {
-  this._changeTextButton('Сохранить');
-  super.open();
-}
+  open() {
+    this._changeTextButton('Сохранить');
+    super.open();
+  }
 
   _setSubmit(evt) {
     evt.preventDefault();
-    console.log(evt);
     const values = this._getInputValues();
     this.submit(values);
     this._changeTextButton('Сохранение...');
