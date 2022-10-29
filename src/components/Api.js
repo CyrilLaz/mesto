@@ -4,16 +4,19 @@ export default class Api {
     this.headers = headers;
   }
 
-  getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers,
-    }).then((res) => {
+  _checkResponce() {
+    return ((res) => {
       if (res.ok) {
         return res.json();
       }
-
       return Promise.reject(`Ошибка: ${res.status}`);
     });
+  }
+
+  getUserInfo() {
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+    }).then (this._checkResponce())
   }
 
   changeUserInfo(values) {
@@ -24,12 +27,7 @@ export default class Api {
         name: values.userName,
         about: values.userJob,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 
   addNewCard(name, link) {
@@ -40,61 +38,34 @@ export default class Api {
         name,
         link,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 
   addLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this.headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 
   removeLike(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this.headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 
   removeCard(cardId) {
     return fetch(`${this.baseUrl}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this.headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 
   changeAvatar(url) {
@@ -104,11 +75,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: url,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then (this._checkResponce())
   }
 }

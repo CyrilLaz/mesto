@@ -15,11 +15,13 @@ export default class UserInfo {
   }
 
   set setUserInfo(values) {
-    const { userName, userJob, userId } = values;
+    if (values) {
+      const { userName, userJob, userId } = values;
 
-    this.name.textContent = userName;
-    this.job.textContent = userJob;
-    this.userId = userId;
+      this.name.textContent = userName;
+      this.job.textContent = userJob;
+      this.userId = userId;
+    }
   }
 
   setUserAvatar(url) {

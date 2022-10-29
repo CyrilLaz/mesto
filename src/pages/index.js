@@ -16,7 +16,7 @@ import '../pages/index.css';
 import Api from '../components/Api.js';
 //---------------------------------------
 
-//------------------------------------------
+//-------------------------------
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',
   headers: {
@@ -25,26 +25,24 @@ const api = new Api({
   },
 });
 //-------
-api
-  .getInitialCards()
-  .then((res) => {
-    renderCard.addItems(res.reverse().map((el) => makeNewCard(el)));
-  })
-  .catch((err) => console.log(err));
 
 //------------
 
-api
-  .getUserInfo()
-  .then((res) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userProfile, iniCards]) => {
+
     userInfo.setUserInfo = {
-      userName: res.name,
-      userJob: res.about,
-      userId: res._id,
+      userName: userProfile.name,
+      userJob: userProfile.about,
+      userId: userProfile._id,
     };
-    userInfo.setUserAvatar(res.avatar);
+    userInfo.setUserAvatar(userProfile.avatar);
+
+    cardsContainer.addItems(iniCards.reverse());
+
   })
   .catch((err) => console.log(err));
+
 //-------------
 
 //на открытие попапа создания карточек
@@ -114,7 +112,7 @@ const makeNewCard = function (el) {
   );
   newCard.setLikes = el.likes;
   newCard.showDeleteIcon(el.owner._id === userInfo.getUserInfo.userId);
-  
+
   return newCard.getCard();
 };
 //----------------
@@ -122,7 +120,7 @@ const popupCard = new PopupWithForm('.popup-addPicture', (values) => {
   api
     .addNewCard(values.pictureName, values.pictureUrl)
     .then((res) => {
-      renderCard.addItem(makeNewCard(res));
+      cardsContainer.addItem(makeNewCard(res));
       popupCard.close();
     })
     .catch((err) => console.log(err));
@@ -160,11 +158,9 @@ const popupWithImage = new PopupWithImage('.popup-picture');
 popupWithImage.setEventListeners();
 
 // внесение карточек в контейнер
-const renderCard = new Section(
+const cardsContainer = new Section(
   {
-    renderer: (element, container) => {
-      container.prepend(element);
-    },
+    renderer:(data) => cardsContainer.addItem(makeNewCard(data)),
   },
   '.cards__list'
 );
