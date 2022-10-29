@@ -8,6 +8,7 @@ export default class PopupWithConfirmation extends PopupWithForm {
   open(action) {
     this.action = action;
     super.open();
+    super._changeTextButton('Да');
   }
 
   _setSubmit(evt) {
